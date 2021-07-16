@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 //@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "code", name = "unique_code")})
@@ -26,8 +27,8 @@ public class Company {
     @NotNull(message = "CEO is required")
     private String ceo;
     @NotNull(message = "Turnover is required")
-    @Min(value = 10001, message = "Turnover should be over 10cr")
-    private long turnover;
+    @Min(value = 10000000, message = "Turnover should be over 10cr")
+    private BigDecimal turnover;
     @NotNull(message = "Website is required")
     private String website;
     @NotNull(message = "Stock Exchange is required")
