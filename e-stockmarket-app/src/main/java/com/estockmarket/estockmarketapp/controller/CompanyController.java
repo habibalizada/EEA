@@ -49,7 +49,7 @@ public class CompanyController {
 */
 
     @GetMapping("/{id}")
-    public Optional<Company> getCompanyById(@PathVariable int id) {
+    public Company getCompanyById(@PathVariable int id) {
         return companyService.getCompanyById(id);
     }
 }

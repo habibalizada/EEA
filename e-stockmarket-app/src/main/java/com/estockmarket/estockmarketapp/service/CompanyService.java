@@ -32,9 +32,10 @@ public class CompanyService {
         companyDao.delete(company);
     }
 
-    public Optional<Company> getCompanyById(int id) {
+    public Company getCompanyById(int id) {
 //        return companyDao.findById(id).orElseThrow(() -> new CompanyNotFoundException(id));
-        return  (Optional)companyDao.findById(id);
+//        return  (Optional)companyDao.findById(id);
+        return  companyDao.findById(id).get();
     }
 
 }
