@@ -19,7 +19,6 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-//    @NotNull
     private String companyCode;
     @NotNull
     private BigDecimal stockPrice;
