@@ -15,8 +15,8 @@ public class CompanyService {
     @Autowired
     private CompanyDao companyDao;
 
-    public void registerCompany(Company company) {
-        companyDao.save(company);
+    public Company registerCompany(Company company) {
+        return companyDao.save(company);
     }
 
     public Company getCompanyByCode(String code) {

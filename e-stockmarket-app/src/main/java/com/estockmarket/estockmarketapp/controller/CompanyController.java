@@ -20,9 +20,8 @@ public class CompanyController {
     private CompanyService companyService;
 
     @PostMapping("/register")
-    public String registerCompany(@Valid @RequestBody Company company) {
-        companyService.registerCompany(company);
-        return company.getName() + " registered";
+    public Company registerCompany(@Valid @RequestBody Company company) {
+        return companyService.registerCompany(company);
     }
 
     @GetMapping("/info/{companycode}")
