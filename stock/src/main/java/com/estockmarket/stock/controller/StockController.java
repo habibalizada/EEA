@@ -25,4 +25,24 @@ public class StockController {
     public List<Stock> getAllStocks() {
         return stockService.getAllStocks();
     }
+
+    @GetMapping("/{id}")
+    public Stock getStock(@PathVariable(name = "id") int id) {
+        return stockService.getStock(id);
+    }
+
+    @GetMapping("/info/{companycode}")
+    public List<Stock> getCompanyByCode(@PathVariable String companycode) {
+        return stockService.getCompanyCode(companycode);
+    }
+
+    @DeleteMapping("/delete/{companycode}")
+    public void deleteStockByCompanyCode(@PathVariable String companycode) {
+        stockService.deleteStockByCompanyCode(companycode);
+    }
+
+    @PutMapping("/update")
+    public Stock updateStock(@RequestBody Stock stock) {
+        return stockService.updateStock(stock);
+    }
 }

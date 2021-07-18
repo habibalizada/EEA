@@ -27,9 +27,12 @@ public class CompanyService {
         return (List<Company>) companyDao.findAll();
     }
 
-    public void deleteCompanyByCode(String code){
+    public String deleteCompanyByCode(String code){
         Company company = companyDao.findByCode(code);
-        companyDao.delete(company);
+        if (company != null) {
+            companyDao.delete(company);
+            return "Company with code: " + code + " deleted.";
+        } else throw new RuntimeException(code + " is not found!");
     }
 
     public Company getCompanyById(int id) {
@@ -38,4 +41,7 @@ public class CompanyService {
         return  companyDao.findById(id).get();
     }
 
+    public Company updateCompany(Company company) {
+        return companyDao.save(company);
+    }
 }

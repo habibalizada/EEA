@@ -29,26 +29,23 @@ public class CompanyController {
         return companyService.getCompanyByCode(companycode);
     }
 
-    @GetMapping("/delete/{companycode}")
-    public void deleteCompanyByCode(@PathVariable String companycode) {
-        companyService.deleteCompanyByCode(companycode);
+    @DeleteMapping("/delete/{companycode}")
+    public String deleteCompanyByCode(@PathVariable String companycode) {
+        return companyService.deleteCompanyByCode(companycode);
     }
 
     @GetMapping("/getall")
     public List<Company> getAllCompanies() {
         return (List<Company>) companyService.getAllCompanies();
     }
-    /*
-    * @GetMapping("/employees/{id}")
-  Employee one(@PathVariable Long id) {
-
-    return repository.findById(id)
-      .orElseThrow(() -> new EmployeeNotFoundException(id));
-  }
-*/
 
     @GetMapping("/{id}")
     public Company getCompanyById(@PathVariable int id) {
         return companyService.getCompanyById(id);
+    }
+
+    @PutMapping("/update")
+    public Company updateCompany(@Valid @RequestBody Company company) {
+        return companyService.updateCompany(company);
     }
 }
