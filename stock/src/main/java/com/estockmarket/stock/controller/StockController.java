@@ -21,13 +21,20 @@ public class StockController {
         return "Stock created for " + companycode;
     }
 
+
     @GetMapping("/getall")
     public List<Stock> getAllStocks() {
         return stockService.getAllStocks();
     }
 
+    @GetMapping("/get/{companycode}/{startdate}/{enddate}")
+    public List<Stock> getStock(@PathVariable String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
+//        return stockService.getStockBetweenStartAndEnddate(companycode, startdate, enddate);
+        return stockService.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
+    }
+
     @GetMapping("/{id}")
-    public Stock getStock(@PathVariable(name = "id") int id) {
+    public Stock getStock(@PathVariable int id) {
         return stockService.getStock(id);
     }
 
