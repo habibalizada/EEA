@@ -16,7 +16,4 @@ public interface StockDao extends JpaRepository<Stock, Integer> {
     @Query(value = "SELECT * FROM stock s WHERE s.company_code = :companycode AND s.update_date_time BETWEEN :startdate  AND :enddate", nativeQuery = true)
     List<Stock> findStocksBetweenStartAndEndDates(@Param("companycode") String companycode, @Param("startdate") String startdate, @Param("enddate") String enddate);
 
-//    void deleteByCompanyCode(String companycode);
-
-    long removeByCompanyCode(String companyCode);
 }
