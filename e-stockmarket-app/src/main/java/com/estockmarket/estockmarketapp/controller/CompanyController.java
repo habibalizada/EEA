@@ -24,6 +24,11 @@ public class CompanyController {
         return companyService.registerCompany(company);
     }
 
+    @PostMapping("/registerall")
+    public List<Company> registerCompanies(@Valid @RequestBody List<Company> companies) {
+        return companyService.registerCompanies(companies);
+    }
+
     @GetMapping("/info/{companycode}")
     public Company getCompanyByCode(@PathVariable String companycode) {
         return companyService.getCompanyByCode(companycode);
