@@ -45,7 +45,4 @@ public class CompanyService {
         return companyDao.save(company);
     }
 
-    public List<Company> registerCompanies(List<Company> companies) {
-        return (List<Company>) companyDao.saveAll(companies);
-    }
 }
