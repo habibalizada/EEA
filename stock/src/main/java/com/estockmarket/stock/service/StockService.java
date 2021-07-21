@@ -66,7 +66,7 @@ public class StockService {
         List<Stock> stockList = stockDao.findByCompanyCode(companycode);
         return stockList
                 .stream()
-                .filter(stock -> stock.getUpdateDateTime().isAfter(startDateParsed) && stock.getUpdateDateTime().isBefore(endDatePrsed))
+                .filter(stock -> stock.getCreateDateTime().isAfter(startDateParsed) && stock.getCreateDateTime().isBefore(endDatePrsed))
                 .collect(Collectors.toList());
     }
 

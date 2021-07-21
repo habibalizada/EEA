@@ -26,7 +26,4 @@ public class Stock {
     @Column
     @CreationTimestamp
     private LocalDateTime createDateTime;
-    @Column
-    @UpdateTimestamp
-    private LocalDateTime updateDateTime;
 }
