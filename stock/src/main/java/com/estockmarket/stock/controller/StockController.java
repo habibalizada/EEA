@@ -15,7 +15,7 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @PostMapping("add/{companycode}")
+    @PostMapping("/add/{companycode}")
     public String addStock(@Validated @RequestBody Stock stock, @PathVariable String companycode) {
         stockService.saveStock(stock, companycode);
         return "Stock created for " + companycode;
