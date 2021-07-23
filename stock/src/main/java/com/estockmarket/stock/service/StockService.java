@@ -17,9 +17,9 @@ public class StockService {
     private StockDao stockDao;
 
     //saveStock
-    public void saveStock(Stock stock, String companycode) {
+    public Stock saveStock(Stock stock, String companycode) {
         stock.setCompanyCode(companycode);
-        stockDao.save(stock);
+        return stockDao.save(stock);
     }
 
     //getStockById

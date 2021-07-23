@@ -1,16 +1,15 @@
 package com.estockmarket.estockmarketapp.controller;
 
-import com.estockmarket.estockmarketapp.dao.CompanyDao;
+import com.estockmarket.estockmarketapp.common.StockResponse;
+import com.estockmarket.estockmarketapp.common.TransactionRequest;
+import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
 import com.estockmarket.estockmarketapp.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/company")
@@ -19,14 +18,20 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+//    @PostMapping("/register")
+//    public Company registerCompany(@Valid @RequestBody Company company) {
+//        return companyService.registerCompany(company);
+//    }
+
     @PostMapping("/register")
-    public Company registerCompany(@Valid @RequestBody Company company) {
-        return companyService.registerCompany(company);
+    public TransactionResponse registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
+        return companyService.registerCompanyWithTransObject(transactionRequest);
     }
 
     @GetMapping("/info/{companycode}")
     public Company getCompanyByCode(@PathVariable String companycode) {
         return companyService.getCompanyByCode(companycode);
+        // Do a rest call to Stock API and pass the company ID
     }
 
     @DeleteMapping("/delete/{companycode}")
@@ -47,5 +52,10 @@ public class CompanyController {
     @PutMapping("/update")
     public Company updateCompany(@Valid @RequestBody Company company) {
         return companyService.updateCompany(company);
+    }
+
+    @GetMapping("/stocks")
+    public List<StockResponse> getAllStocksResponse() {
+        return  companyService.getAllStocksResponse();
     }
 }

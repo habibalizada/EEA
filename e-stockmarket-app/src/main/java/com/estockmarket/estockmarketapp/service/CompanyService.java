@@ -1,13 +1,18 @@
 package com.estockmarket.estockmarketapp.service;
 
 //import com.estockmarket.estockmarketapp.Exception.CompanyNotFoundException;
+import com.estockmarket.estockmarketapp.client.CompanyClient;
+import com.estockmarket.estockmarketapp.common.StockRequest;
+import com.estockmarket.estockmarketapp.common.StockResponse;
+import com.estockmarket.estockmarketapp.common.TransactionRequest;
+import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -15,8 +20,16 @@ public class CompanyService {
     @Autowired
     private CompanyDao companyDao;
 
-    public Company registerCompany(Company company) {
-        return companyDao.save(company);
+    @Autowired
+    private CompanyClient companyClient;
+
+    public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) {
+        Company company = transactionRequest.getCompany();
+        StockRequest stockRequest = transactionRequest.getStockRequest();
+        // Rest call
+        StockResponse stockResponse = companyClient.addStock(stockRequest, company.getCode());
+        companyDao.save(company);
+        return new TransactionResponse(company, stockResponse);
     }
 
     public Company getCompanyByCode(String code) {
@@ -36,8 +49,6 @@ public class CompanyService {
     }
 
     public Company getCompanyById(int id) {
-//        return companyDao.findById(id).orElseThrow(() -> new CompanyNotFoundException(id));
-//        return  (Optional)companyDao.findById(id);
         return  companyDao.findById(id).get();
     }
 
@@ -45,4 +56,7 @@ public class CompanyService {
         return companyDao.save(company);
     }
 
+    public List<StockResponse> getAllStocksResponse() {
+        return companyClient.getAllStocks();
+    }
 }

@@ -16,9 +16,8 @@ public class StockController {
     private StockService stockService;
 
     @PostMapping("/add/{companycode}")
-    public String addStock(@Validated @RequestBody Stock stock, @PathVariable String companycode) {
-        stockService.saveStock(stock, companycode);
-        return "Stock created for " + companycode;
+    public Stock addStock(@Validated @RequestBody Stock stock, @PathVariable String companycode) {
+        return stockService.saveStock(stock, companycode);
     }
 
 
@@ -29,7 +28,6 @@ public class StockController {
 
     @GetMapping("/get/{companycode}/{startdate}/{enddate}")
     public List<Stock> getStock(@PathVariable String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
-//        return stockService.getStockBetweenStartAndEnddate(companycode, startdate, enddate);
         return stockService.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
     }
 
