@@ -72,9 +72,13 @@ public class CompanyService {
         } else throw new RuntimeException(code + " is not found!");
     }
 
-    public ResponseEntity<Company> getCompanyById(Long id) throws CompanyCollectionException {
-        Company company = companyDao.findById(id).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundWithIdException(id)));
-        return ResponseEntity.ok().body(company);
+    public Company getCompanyById(Long id) throws CompanyCollectionException {
+        Optional<Company> company = companyDao.findById(id);
+        if (!company.isPresent()) {
+            throw new CompanyCollectionException(CompanyCollectionException.NotFoundWithIdException(id));
+        } else {
+            return company.get();
+        }
     }
 
     public Company updateCompany(Company company) {

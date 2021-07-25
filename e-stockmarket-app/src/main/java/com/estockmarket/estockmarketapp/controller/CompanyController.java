@@ -64,7 +64,7 @@ public class CompanyController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getCompanyById(@PathVariable Long id) {
         try {
-            return companyService.getCompanyById(id);
+            return new ResponseEntity<>(companyService.getCompanyById(id), HttpStatus.OK);
         } catch (CompanyCollectionException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
