@@ -1,36 +1,44 @@
 package com.estockmarket.estockmarketapp.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-@Entity
+//@Entity
 //@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "code", name = "unique_code")})
-@Table(name = "company")
+//@Table(name = "company")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Document(collection = "company")
 public class Company {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "companys_sequence";
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @NotNull(message = "Code is required")
-    @Column(name = "code", length = 200, unique = true)
+    private long id;
+    @NotNull(message = "Code is mandatory")
+//    @Size(max=100)
+//    @UniqueElements(message = "Code should be unique")
     private String code;
-    @NotNull(message = "Name is required")
+    @NotNull(message = "Name is mandatory")
     private String name;
-    @NotNull(message = "CEO is required")
+    @NotNull(message = "Ceo is mandatory")
     private String ceo;
-    @NotNull(message = "Turnover is required")
-    @Min(value = 10000000, message = "Turnover should be over 10cr")
+    @NotNull(message = "Turnover is mandatory")
+    @DecimalMin(value = "10000000", inclusive = true)
     private BigDecimal turnover;
-    @NotNull(message = "Website is required")
+    @NotNull(message = "Website is mandatory")
     private String website;
-    @NotNull(message = "Stock Exchange is required")
+    @NotNull(message = "Enlisted stock exchange is mandatory")
     private String enlistedStockExchange;
 }

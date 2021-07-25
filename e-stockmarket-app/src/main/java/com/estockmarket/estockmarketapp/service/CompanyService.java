@@ -1,6 +1,7 @@
 package com.estockmarket.estockmarketapp.service;
 
 //import com.estockmarket.estockmarketapp.Exception.CompanyNotFoundException;
+import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyClient;
 import com.estockmarket.estockmarketapp.common.StockRequest;
 import com.estockmarket.estockmarketapp.common.StockResponse;
@@ -9,10 +10,14 @@ import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -23,33 +28,53 @@ public class CompanyService {
     @Autowired
     private CompanyClient companyClient;
 
-    public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) {
+    @Autowired
+    private SequenceGeneratorService sequenceGeneratorService;
+
+
+    public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException{
         Company company = transactionRequest.getCompany();
         StockRequest stockRequest = transactionRequest.getStockRequest();
-        // Rest call
-        StockResponse stockResponse = companyClient.addStock(stockRequest, company.getCode());
-        companyDao.save(company);
+        StockResponse stockResponse = null;
+        Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
+        if (optionalCompany.isPresent()) {
+            throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
+        } else {
+            company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
+            companyDao.save(company);
+            // Rest call
+            stockResponse = companyClient.addStock(stockRequest, company.getCode());
+
+        }
         return new TransactionResponse(company, stockResponse);
     }
 
-    public Company getCompanyByCode(String code) {
-        return companyDao.findByCode(code);
+    public ResponseEntity<Company> getCompanyByCode(String code) throws CompanyCollectionException {
+        Company company = companyDao.findByCode(code).orElseThrow(()-> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
+//        return companyDao.findByCode(code);
+        return ResponseEntity.ok().body(company);
     }
 
     public List<Company> getAllCompanies() {
-        return (List<Company>) companyDao.findAll();
+        List<Company> companies = companyDao.findAll();
+        if (companies.size() > 0) {
+            return companies;
+        } else {
+            return new ArrayList<Company>();
+        }
     }
 
     public String deleteCompanyByCode(String code){
-        Company company = companyDao.findByCode(code);
-        if (company != null) {
-            companyDao.delete(company);
+        Optional<Company> company = companyDao.findByCode(code);
+        if (company.isPresent()) {
+            companyDao.delete(company.get());
             return "Company with code: " + code + " deleted.";
         } else throw new RuntimeException(code + " is not found!");
     }
 
-    public Company getCompanyById(int id) {
-        return  companyDao.findById(id).get();
+    public ResponseEntity<Company> getCompanyById(Long id) throws CompanyCollectionException {
+        Company company = companyDao.findById(id).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundWithIdException(id)));
+        return ResponseEntity.ok().body(company);
     }
 
     public Company updateCompany(Company company) {

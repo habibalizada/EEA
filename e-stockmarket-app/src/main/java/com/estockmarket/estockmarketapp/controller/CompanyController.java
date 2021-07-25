@@ -1,15 +1,20 @@
 package com.estockmarket.estockmarketapp.controller;
 
+import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.common.StockResponse;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
 import com.estockmarket.estockmarketapp.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/company")
@@ -24,14 +29,25 @@ public class CompanyController {
 //    }
 
     @PostMapping("/register")
-    public TransactionResponse registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
-        return companyService.registerCompanyWithTransObject(transactionRequest);
+    public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
+        try {
+            companyService.registerCompanyWithTransObject(transactionRequest);
+            return new ResponseEntity<>(transactionRequest, HttpStatus.OK);
+
+        } catch (ConstraintViolationException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping("/info/{companycode}")
-    public Company getCompanyByCode(@PathVariable String companycode) {
-        return companyService.getCompanyByCode(companycode);
-        // Do a rest call to Stock API and pass the company ID
+    public ResponseEntity<?> getCompanyByCode(@PathVariable String companycode) {
+        try {
+            return companyService.getCompanyByCode(companycode);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/delete/{companycode}")
@@ -40,13 +56,18 @@ public class CompanyController {
     }
 
     @GetMapping("/getall")
-    public List<Company> getAllCompanies() {
-        return (List<Company>) companyService.getAllCompanies();
+    public ResponseEntity<?> getAllCompanies() {
+        List<Company> companies = companyService.getAllCompanies();
+        return new ResponseEntity<>(companies, companies.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
-    public Company getCompanyById(@PathVariable int id) {
-        return companyService.getCompanyById(id);
+    public ResponseEntity<?> getCompanyById(@PathVariable Long id) {
+        try {
+            return companyService.getCompanyById(id);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/update")
