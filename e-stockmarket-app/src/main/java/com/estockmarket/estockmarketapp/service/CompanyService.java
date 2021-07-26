@@ -64,12 +64,13 @@ public class CompanyService {
         }
     }
 
-    public String deleteCompanyByCode(String code){
+    public void deleteCompanyByCode(String code) throws CompanyCollectionException{
         Optional<Company> company = companyDao.findByCode(code);
-        if (company.isPresent()) {
+        if (!company.isPresent()) {
+            throw new CompanyCollectionException(CompanyCollectionException.NotFoundException(code));
+        } else {
             companyDao.delete(company.get());
-            return "Company with code: " + code + " deleted.";
-        } else throw new RuntimeException(code + " is not found!");
+        }
     }
 
     public Company getCompanyById(Long id) throws CompanyCollectionException {

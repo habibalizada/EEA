@@ -51,8 +51,13 @@ public class CompanyController {
     }
 
     @DeleteMapping("/delete/{companycode}")
-    public String deleteCompanyByCode(@PathVariable String companycode) {
-        return companyService.deleteCompanyByCode(companycode);
+    public ResponseEntity<?> deleteCompanyByCode(@PathVariable String companycode) {
+        try {
+            companyService.deleteCompanyByCode(companycode);
+            return  new ResponseEntity<>("Successfully deleted company with code:" + companycode, HttpStatus.OK);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/getall")
