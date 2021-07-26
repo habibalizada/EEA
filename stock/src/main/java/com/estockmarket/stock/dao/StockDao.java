@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-@EnableJpaRepositories
+//@EnableJpaRepositories
 public interface StockDao extends JpaRepository<Stock, Integer> {
 
     List<Stock> findByCompanyCode(String companyCode);

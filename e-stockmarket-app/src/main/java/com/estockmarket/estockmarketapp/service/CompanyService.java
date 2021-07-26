@@ -1,6 +1,5 @@
 package com.estockmarket.estockmarketapp.service;
 
-//import com.estockmarket.estockmarketapp.Exception.CompanyNotFoundException;
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyClient;
 import com.estockmarket.estockmarketapp.common.StockRequest;
@@ -36,6 +35,7 @@ public class CompanyService {
         StockRequest stockRequest = transactionRequest.getStockRequest();
         Stock stock = null;
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
+        // To make sure company code is unique
         if (optionalCompany.isPresent()) {
             throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
         } else {
@@ -50,7 +50,6 @@ public class CompanyService {
 
     public ResponseEntity<Company> getCompanyByCode(String code) throws CompanyCollectionException {
         Company company = companyDao.findByCode(code).orElseThrow(()-> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
-//        return companyDao.findByCode(code);
         return ResponseEntity.ok().body(company);
     }
 
