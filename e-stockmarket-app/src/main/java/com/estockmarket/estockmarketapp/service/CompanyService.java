@@ -4,7 +4,7 @@ package com.estockmarket.estockmarketapp.service;
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyClient;
 import com.estockmarket.estockmarketapp.common.StockRequest;
-import com.estockmarket.estockmarketapp.common.StockResponse;
+import com.estockmarket.estockmarketapp.common.Stock;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
@@ -12,7 +12,6 @@ import com.estockmarket.estockmarketapp.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class CompanyService {
     public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException{
         Company company = transactionRequest.getCompany();
         StockRequest stockRequest = transactionRequest.getStockRequest();
-        StockResponse stockResponse = null;
+        Stock stock = null;
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
         if (optionalCompany.isPresent()) {
             throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
@@ -43,10 +42,10 @@ public class CompanyService {
             company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
             companyDao.save(company);
             // Rest call
-            stockResponse = companyClient.addStock(stockRequest, company.getCode());
+            stock = companyClient.addStock(stockRequest, company.getCode());
 
         }
-        return new TransactionResponse(company, stockResponse);
+        return new TransactionResponse(company, stock);
     }
 
     public ResponseEntity<Company> getCompanyByCode(String code) throws CompanyCollectionException {
@@ -86,7 +85,7 @@ public class CompanyService {
         return companyDao.save(company);
     }
 
-    public List<StockResponse> getAllStocksResponse() {
+    public List<Stock> getAllStocksResponse() {
         return companyClient.getAllStocks();
     }
 }

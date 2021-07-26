@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StockResponse {
+public class Stock {
     private int id;
     private String companyCode;
     private BigDecimal stockPrice;

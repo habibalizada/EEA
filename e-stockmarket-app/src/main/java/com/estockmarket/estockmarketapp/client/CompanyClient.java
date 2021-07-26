@@ -1,7 +1,7 @@
 package com.estockmarket.estockmarketapp.client;
 
 import com.estockmarket.estockmarketapp.common.StockRequest;
-import com.estockmarket.estockmarketapp.common.StockResponse;
+import com.estockmarket.estockmarketapp.common.Stock;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +14,8 @@ import java.util.List;
 public interface CompanyClient {
 
     @PostMapping("add/{companycode}")
-    public StockResponse addStock(@RequestBody StockRequest stockRequest, @PathVariable("companycode") String companycode);
+    public Stock addStock(@RequestBody StockRequest stockRequest, @PathVariable("companycode") String companycode);
 
     @GetMapping("/getall")
-    List<StockResponse> getAllStocks();
+    List<Stock> getAllStocks();
 }

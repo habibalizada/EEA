@@ -1,7 +1,7 @@
 package com.estockmarket.estockmarketapp.controller;
 
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
-import com.estockmarket.estockmarketapp.common.StockResponse;
+import com.estockmarket.estockmarketapp.common.Stock;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/company")
@@ -31,8 +30,8 @@ public class CompanyController {
     @PostMapping("/register")
     public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
-            companyService.registerCompanyWithTransObject(transactionRequest);
-            return new ResponseEntity<>(transactionRequest, HttpStatus.OK);
+            TransactionResponse transactionResponse = companyService.registerCompanyWithTransObject(transactionRequest);
+            return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
 
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -81,7 +80,7 @@ public class CompanyController {
     }
 
     @GetMapping("/stocks")
-    public List<StockResponse> getAllStocksResponse() {
+    public List<Stock> getAllStocksResponse() {
         return  companyService.getAllStocksResponse();
     }
 }

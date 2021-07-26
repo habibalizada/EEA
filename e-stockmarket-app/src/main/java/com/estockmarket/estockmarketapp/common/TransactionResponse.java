@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class TransactionResponse {
 
     private Company company;
-    private StockResponse stockResponse;
+    private Stock stock;
 }
