@@ -10,11 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 public class EStockmarketAppApplication {
 
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(EStockmarketAppApplication.class, args);
 	}
