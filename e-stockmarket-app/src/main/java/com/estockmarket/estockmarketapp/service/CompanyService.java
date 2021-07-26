@@ -38,6 +38,9 @@ public class CompanyService {
         // To make sure company code is unique
         if (optionalCompany.isPresent()) {
             throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
+        } else if (stockRequest.getStockPrice() == null) {
+            throw new CompanyCollectionException("Stock price can't be null");
+
         } else {
             company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
             companyDao.save(company);

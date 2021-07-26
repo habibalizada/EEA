@@ -20,7 +20,7 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String companyCode;
-    @NotNull
+    @NotNull(message = "Stock price must not be null")
     private BigDecimal stockPrice;
     @Column
     @CreationTimestamp
