@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(url = "http://localhost:9191/api/v1.0/market/stock", name = "COMPANY-CLIENT")
+//@FeignClient(url = "http://localhost:9191/api/v1.0/market/stock", name = "COMPANY-CLIENT")
+@FeignClient("STOCK-SERVICE/api/v1.0/market/stock")
 public interface CompanyClient {
 
     @PostMapping("add/{companycode}")
