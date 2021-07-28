@@ -1,7 +1,7 @@
 package com.estockmarket.estockmarketapp.service;
 
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
-import com.estockmarket.estockmarketapp.client.CompanyClient;
+import com.estockmarket.estockmarketapp.client.CompanyFeignClient;
 import com.estockmarket.estockmarketapp.common.StockRequest;
 import com.estockmarket.estockmarketapp.common.Stock;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
@@ -24,7 +24,7 @@ public class CompanyService {
     private CompanyDao companyDao;
 
     @Autowired
-    private CompanyClient companyClient;
+    private CompanyFeignClient companyFeignClient;
 
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
@@ -45,7 +45,7 @@ public class CompanyService {
             company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
             companyDao.save(company);
             // Rest call
-            stock = companyClient.addStock(stockRequest, company.getCode());
+            stock = companyFeignClient.addStock(stockRequest, company.getCode());
 
         }
         return new TransactionResponse(company, stock);
@@ -71,6 +71,7 @@ public class CompanyService {
             throw new CompanyCollectionException(CompanyCollectionException.NotFoundException(code));
         } else {
             companyDao.delete(company.get());
+            companyFeignClient.deleteStockByCompanyCode(code);
         }
     }
 
@@ -88,6 +89,6 @@ public class CompanyService {
     }
 
     public List<Stock> getAllStocksResponse() {
-        return companyClient.getAllStocks();
+        return companyFeignClient.getAllStocks();
     }
 }
