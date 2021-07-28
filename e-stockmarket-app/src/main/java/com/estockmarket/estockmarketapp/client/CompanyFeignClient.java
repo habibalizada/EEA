@@ -21,6 +21,9 @@ public interface CompanyFeignClient {
     @GetMapping("/info/latest/{companycode}")
     Optional<Stock> getLatestStockByCompanyCode(@PathVariable String companycode);
 
+    @GetMapping("/info/{companycode}")
+    List<Stock> getCompanyByCode(@PathVariable String companycode);
+
     @DeleteMapping("/delete/{companycode}")
     void deleteStockByCompanyCode(@PathVariable String companycode);
 }

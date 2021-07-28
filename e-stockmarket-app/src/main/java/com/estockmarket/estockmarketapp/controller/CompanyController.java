@@ -2,6 +2,7 @@ package com.estockmarket.estockmarketapp.controller;
 
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.common.Stock;
+import com.estockmarket.estockmarketapp.common.TranResWithAllStocks;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
@@ -53,7 +54,7 @@ public class CompanyController {
     public ResponseEntity<?> deleteCompanyByCode(@PathVariable String companycode) {
         try {
             companyService.deleteCompanyByCode(companycode);
-            return  new ResponseEntity<>("Successfully deleted company with code:" + companycode, HttpStatus.OK);
+            return new ResponseEntity<>("Successfully deleted company with code:" + companycode, HttpStatus.OK);
         } catch (CompanyCollectionException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -61,8 +62,8 @@ public class CompanyController {
 
     @GetMapping("/getall")
     public ResponseEntity<?> getAllCompanies() {
-        List<Company> companies = companyService.getAllCompanies();
-        return new ResponseEntity<>(companies, companies.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        List<TranResWithAllStocks> tranResWithAllStocksList = companyService.getAllCompanies();
+        return new ResponseEntity<>(tranResWithAllStocksList, tranResWithAllStocksList.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
@@ -81,6 +82,6 @@ public class CompanyController {
 
     @GetMapping("/stocks")
     public List<Stock> getAllStocksResponse() {
-        return  companyService.getAllStocksResponse();
+        return companyService.getAllStocksResponse();
     }
 }
