@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/stock")
@@ -39,6 +40,11 @@ public class StockController {
     @GetMapping("/info/{companycode}")
     public List<Stock> getCompanyByCode(@PathVariable String companycode) {
         return stockService.getCompanyCode(companycode);
+    }
+
+    @GetMapping("/info/latest/{companycode}")
+    public Optional<Stock> getLatestStockByCompanyCode(@PathVariable String companycode) {
+        return stockService.getLatestStockByCompanyCode(companycode);
     }
 
     @DeleteMapping("/delete/{companycode}")

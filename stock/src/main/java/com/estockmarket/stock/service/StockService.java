@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +33,10 @@ public class StockService {
     //getByCompanyCode
     public List<Stock> getCompanyCode(String companycode) {
         return stockDao.findByCompanyCode(companycode);
+    }
+
+    public Optional<Stock> getLatestStockByCompanyCode(String companycode) {
+        return stockDao.findLatestStockByCompany(companycode);
     }
 
     //deleteStock by companyCode
