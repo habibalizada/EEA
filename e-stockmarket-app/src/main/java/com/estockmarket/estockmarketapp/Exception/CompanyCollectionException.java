@@ -12,6 +12,10 @@ public class CompanyCollectionException  extends Exception{
         return "Company with code: " + code + " not found";
     }
 
+    public static String StockNotFoundException(String code) {
+        return "Stock with company code: " + code + " not found";
+    }
+
     public static String CompanyAlreadyExists() {
         return "Company with given code already exists";
     }

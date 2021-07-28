@@ -33,7 +33,7 @@ public class CompanyService {
     public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException{
         Company company = transactionRequest.getCompany();
         StockRequest stockRequest = transactionRequest.getStockRequest();
-        Stock stock = null;
+        Stock stock;
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
         // To make sure company code is unique
         if (optionalCompany.isPresent()) {
@@ -51,9 +51,11 @@ public class CompanyService {
         return new TransactionResponse(company, stock);
     }
 
-    public ResponseEntity<Company> getCompanyByCode(String code) throws CompanyCollectionException {
+    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
         Company company = companyDao.findByCode(code).orElseThrow(()-> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
-        return ResponseEntity.ok().body(company);
+        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
+        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
+        return ResponseEntity.ok().body(transactionResponse);
     }
 
     public List<Company> getAllCompanies() {
@@ -61,7 +63,7 @@ public class CompanyService {
         if (companies.size() > 0) {
             return companies;
         } else {
-            return new ArrayList<Company>();
+            return new ArrayList<>();
         }
     }
 
