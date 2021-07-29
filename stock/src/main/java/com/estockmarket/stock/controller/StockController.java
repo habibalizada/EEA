@@ -21,7 +21,6 @@ public class StockController {
         return stockService.saveStock(stock, companycode);
     }
 
-
     @GetMapping("/getall")
     public List<Stock> getAllStocks() {
         return stockService.getAllStocks();
