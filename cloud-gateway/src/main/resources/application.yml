@@ -3,6 +3,19 @@ spring:
     name: GATEWAY-SERVICE
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedHeaders:
+              - content-type
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - OPTIONS
+              - HEAD
+              - DELETE
       routes:
         - id: company-service
           uri: lb://COMPANY-SERVICE

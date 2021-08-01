@@ -11,7 +11,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/stock")
-@CrossOrigin(originPatterns = "*")
+//Fallowing line is commented because it CORS is set up in Gateway
+//@CrossOrigin(originPatterns = "*")
 public class StockController {
 
     @Autowired
