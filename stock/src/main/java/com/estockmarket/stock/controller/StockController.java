@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1.0/market/stock")
+@CrossOrigin(originPatterns = "*")
 public class StockController {
 
     @Autowired
