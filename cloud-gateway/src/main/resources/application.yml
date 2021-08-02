@@ -13,9 +13,9 @@ spring:
               - GET
               - POST
               - PUT
-              - OPTIONS
-              - HEAD
               - DELETE
+#              - OPTIONS
+#              - HEAD
       routes:
         - id: company-service
           uri: lb://COMPANY-SERVICE
