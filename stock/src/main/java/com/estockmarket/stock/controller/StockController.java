@@ -44,7 +44,7 @@ public class StockController {
     }
 
     @GetMapping("/info/latest/{companycode}")
-    public Optional<Stock> getLatestStockByCompanyCode(@PathVariable String companycode) {
+    public Stock getLatestStockByCompanyCode(@PathVariable String companycode) {
         return stockService.getLatestStockByCompanyCode(companycode);
     }
 

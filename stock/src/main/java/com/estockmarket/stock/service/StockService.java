@@ -35,7 +35,7 @@ public class StockService {
         return stockDao.findByCompanyCode(companycode);
     }
 
-    public Optional<Stock> getLatestStockByCompanyCode(String companycode) {
+    public Stock getLatestStockByCompanyCode(String companycode) {
         return stockDao.findLatestStockByCompany(companycode);
     }
 

@@ -15,7 +15,7 @@ public interface StockDao extends JpaRepository<Stock, Integer> {
     List<Stock> findByCompanyCode(String companyCode);
 
     @Query(value = "SELECT * FROM stock s WHERE s.create_date_time = (SELECT MAX(s.create_date_time) FROM stock s WHERE s.company_code = :companycode)", nativeQuery = true)
-    Optional<Stock> findLatestStockByCompany(String companycode);
+    Stock findLatestStockByCompany(String companycode);
 
     @Query(value = "SELECT * FROM stock s WHERE s.company_code = :companycode AND s.create_date_time BETWEEN :startdate  AND :enddate", nativeQuery = true)
     List<Stock> findStocksBetweenStartAndEndDates(@Param("companycode") String companycode, @Param("startdate") String startdate, @Param("enddate") String enddate);

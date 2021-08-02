@@ -19,7 +19,7 @@ public interface CompanyFeignClient {
     List<Stock> getAllStocks();
 
     @GetMapping("/info/latest/{companycode}")
-    Optional<Stock> getLatestStockByCompanyCode(@PathVariable String companycode);
+    Stock getLatestStockByCompanyCode(@PathVariable String companycode);
 
     @GetMapping("/info/{companycode}")
     List<Stock> getCompanyByCode(@PathVariable String companycode);

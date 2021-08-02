@@ -62,8 +62,8 @@ public class CompanyController {
 
     @GetMapping("/getall")
     public ResponseEntity<?> getAllCompanies() {
-        List<TranResWithAllStocks> tranResWithAllStocksList = companyService.getAllCompanies();
-        return new ResponseEntity<>(tranResWithAllStocksList, tranResWithAllStocksList.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        List<TransactionResponse> transactionResponseList = companyService.getAllCompanies();
+        return new ResponseEntity<>(transactionResponseList, transactionResponseList.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")

@@ -50,21 +50,25 @@ public class CompanyService {
 
     public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
         Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
-        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
+        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code);
+        if (stock == null){
+            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
+        }
+        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
         TransactionResponse transactionResponse = new TransactionResponse(company, stock);
         return ResponseEntity.ok().body(transactionResponse);
     }
 
-    public List<TranResWithAllStocks> getAllCompanies() {
+    public List<TransactionResponse> getAllCompanies() {
         List<Company> companies = companyDao.findAll();
-        List<Stock> stocks;
-        List<TranResWithAllStocks> tranResWithAllStocksList = new ArrayList<>();
+        Stock latestStock;
+        List<TransactionResponse> transactionResponseList = new ArrayList<>();
         if (companies.size() > 0) {
             for (Company company : companies) {
-                stocks = companyFeignClient.getCompanyByCode(company.getCode());
-                tranResWithAllStocksList.add(new TranResWithAllStocks(company, stocks));
+                latestStock = companyFeignClient.getLatestStockByCompanyCode(company.getCode());
+                transactionResponseList.add(new TransactionResponse(company, latestStock));
             }
-            return tranResWithAllStocksList;
+            return transactionResponseList;
         } else {
             return new ArrayList<>();
         }
