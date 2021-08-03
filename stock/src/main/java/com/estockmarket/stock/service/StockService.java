@@ -1,14 +1,15 @@
 package com.estockmarket.stock.service;
 
 import com.estockmarket.stock.dao.StockDao;
+import com.estockmarket.stock.model.ResponseStock;
 import com.estockmarket.stock.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,7 +76,19 @@ public class StockService {
                 .collect(Collectors.toList());
     }
 
-    public List<Stock> findStocksBetweenStartAndEndDates(String companycode, String startdate, String enddate) {
-        return stockDao.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
+    public ResponseStock findStocksBetweenStartAndEndDates(String companycode, String startdate, String enddate) {
+        List<BigDecimal> prices = new ArrayList<>();
+        BigDecimal total = new BigDecimal(0);
+        List<Stock> stocks = stockDao.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
+        for (Stock s: stocks){
+            prices.add(s.getStockPrice());
+            total = total.add(s.getStockPrice());
+        }
+        BigDecimal min = Collections.min(prices);
+        BigDecimal max = Collections.max(prices);
+        BigDecimal ave = total.divide(new BigDecimal(stocks.size()));
+
+
+        return new ResponseStock(stocks,min,max,ave);
     }
 }

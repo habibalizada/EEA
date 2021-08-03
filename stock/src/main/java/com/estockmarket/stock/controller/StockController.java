@@ -1,5 +1,6 @@
 package com.estockmarket.stock.controller;
 
+import com.estockmarket.stock.model.ResponseStock;
 import com.estockmarket.stock.model.Stock;
 import com.estockmarket.stock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class StockController {
     }
 
     @GetMapping("/get/{companycode}/{startdate}/{enddate}")
-    public List<Stock> getStock(@PathVariable String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
+    public ResponseStock getStock(@PathVariable String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
         return stockService.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
     }
 
