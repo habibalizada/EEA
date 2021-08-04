@@ -80,6 +80,10 @@ public class StockService {
         List<BigDecimal> prices = new ArrayList<>();
         BigDecimal total = new BigDecimal(0);
         List<Stock> stocks = stockDao.findStocksBetweenStartAndEndDates(companycode, startdate, enddate);
+        if (stocks.size()==0){
+            return new ResponseStock();
+        }
+
         for (Stock s: stocks){
             prices.add(s.getStockPrice());
             total = total.add(s.getStockPrice());
