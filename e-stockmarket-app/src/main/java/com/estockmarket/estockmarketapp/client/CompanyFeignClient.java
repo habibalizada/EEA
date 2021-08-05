@@ -26,4 +26,7 @@ public interface CompanyFeignClient {
 
     @DeleteMapping("/delete/{companycode}")
     void deleteStockByCompanyCode(@PathVariable String companycode);
+
+    @PutMapping("/update-all")
+    List<Stock> updateAllStocks(@RequestBody List<Stock> stocks);
 }

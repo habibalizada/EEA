@@ -58,4 +58,9 @@ public class StockController {
     public Stock updateStock(@RequestBody Stock stock) {
         return stockService.updateStock(stock);
     }
+
+    @PutMapping("/update-all")
+    public List<Stock> updateAllStocks(@RequestBody List<Stock> stocks) {
+        return stockService.updateAllStocks(stocks);
+    }
 }

@@ -51,6 +51,11 @@ public class StockService {
         return stockDao.save(stock);
     }
 
+    //updateStock All
+    public List<Stock> updateAllStocks(List<Stock> stocks) {
+        return stockDao.saveAll(stocks);
+    }
+
 
     public Stock getStock(int id) {
         return stockDao.findById(id).get();

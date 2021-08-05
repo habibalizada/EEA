@@ -94,6 +94,13 @@ public class CompanyService {
     }
 
     public Company updateCompany(Company company) {
+        long id = company.getId();
+        Company oldCompany = companyDao.findById(id).get();
+        List<Stock> oldStoks = companyFeignClient.getCompanyByCode(oldCompany.getCode());
+        for (int i = 0; i < oldStoks.size(); i++) {
+            oldStoks.get(i).setCompanyCode(company.getCode());
+        }
+        companyFeignClient.updateAllStocks(oldStoks);
         return companyDao.save(company);
     }
 
