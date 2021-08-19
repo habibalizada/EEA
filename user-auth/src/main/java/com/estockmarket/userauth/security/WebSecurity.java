@@ -22,22 +22,26 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //    private UsersService usersService;
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    @Autowired
-//    public WebSecurity(Environment environment, UsersService usersService, BCryptPasswordEncoder bCryptPasswordEncoder)
-//    {
+    @Autowired
+    public WebSecurity(
+//            Environment environment
+//            UsersService usersService,
+//            BCryptPasswordEncoder bCryptPasswordEncoder
+    )
+    {
 //        this.environment = environment;
 //        this.usersService = usersService;
 //        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/users/**").permitAll();
-//        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))
+//        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"));
 //                .and()
 //                .addFilter(getAuthenticationFilter());
-//        http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable();
     }
 
 //    private AuthenticationFilter getAuthenticationFilter() throws Exception
