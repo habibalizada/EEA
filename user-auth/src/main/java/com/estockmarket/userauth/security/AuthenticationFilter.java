@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.estockmarket.userauth.model.LoginRequestModel;
 import com.estockmarket.userauth.service.UsersService;
 import com.estockmarket.userauth.shared.UserDto;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -63,17 +65,17 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
-//        String userName = ((User) auth.getPrincipal()).getUsername();
-//        UserDto userDetails = usersService.getUserDetailsByEmail(userName);
-//
-//        String token = Jwts.builder()
-//                .setSubject(userDetails.getUserId())
-//                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
-//                .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret") )
-//                .compact();
-//
-//        res.addHeader("token", token);
-//        res.addHeader("userId", userDetails.getUserId());
+        String userName = ((User) auth.getPrincipal()).getUsername();
+        UserDto userDetails = usersService.getUserDetailsByEmail(userName);
+
+        String token = Jwts.builder()
+                .setSubject(userDetails.getUserId())
+                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
+                .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret") )
+                .compact();
+
+        res.addHeader("token", token);
+        res.addHeader("userId", userDetails.getUserId());
     }
 
 
