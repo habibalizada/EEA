@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="CQRS project structure">
-      <change afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/configuration/AxonConfig.java" afterDir="false" />
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Axon configuration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/StockCommandApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/StockCommandApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/StockQueryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/StockQueryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +59,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631558705583</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Axon configuration">
+      <created>1631560775574</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631560775574</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -82,6 +82,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CQRS project structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="CQRS project structure" />
+    <MESSAGE value="Axon configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Axon configuration" />
   </component>
 </project>
