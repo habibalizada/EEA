@@ -1,13 +1,13 @@
-package com.estockmarket.stock.cmd.api;
+package com.estockmarket.stock.query.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class StockQueryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(StockQueryApplication.class, args);
 	}
 
 }

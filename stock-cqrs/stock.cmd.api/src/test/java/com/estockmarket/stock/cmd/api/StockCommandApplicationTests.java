@@ -1,10 +1,10 @@
-package com.estockmarket.stock.query.api;
+package com.estockmarket.stock.cmd.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class StockCommandApplicationTests {
 
 	@Test
 	void contextLoads() {
