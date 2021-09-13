@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/test/java/com/estockmarket/stock/cmd/api/ApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/test/java/com/estockmarket/stock/query/api/ApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1y5WgUlcIOTPK8FuA8zcGVo3Xea" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="" />
+      <created>1631542040466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631542040466</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
