@@ -1,0 +1,25 @@
+server:
+  port: 9291
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: stock
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/stock
+    username: root
+    password: s09c12s09c12
+    driver-class-name: com.mysql.jdbc.Driver
+
+#security:
+#  oauth2:
+#    resource:
+#      jwt:
+#        key-value: springbankSigningKey
