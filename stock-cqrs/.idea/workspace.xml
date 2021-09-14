@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Axon configuration">
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Stock Commands created">
+      <change afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockCreatedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockDeletedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockUpdatedEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +34,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1y5WgUlcIOTPK8FuA8zcGVo3Xea" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,6 +54,7 @@
       <recent name="$PROJECT_DIR$/stock.query.api/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.estockmarket.stock.cmd.api.commands" />
       <recent name="com.estockmarket.stock.cmd.api.config" />
     </key>
   </component>
@@ -99,7 +101,28 @@
       <option name="project" value="LOCAL" />
       <updated>1631560775574</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mysql setting added in stock.cmd.api">
+      <created>1631587686555</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631587686555</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Stock domain model created">
+      <created>1631588576982</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1631588576983</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Stock Commands created">
+      <created>1631627463136</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631627463136</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -116,6 +139,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CQRS project structure" />
     <MESSAGE value="Axon configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Axon configuration" />
+    <MESSAGE value="mysql setting added in stock.cmd.api" />
+    <MESSAGE value="Stock domain model created" />
+    <MESSAGE value="Stock Commands created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stock Commands created" />
   </component>
 </project>
