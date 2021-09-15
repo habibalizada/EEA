@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +16,6 @@ public class UpdateStockCommand {
 
     @TargetAggregateIdentifier
     private String id;
+    @NotNull(message = "Company code must not be null")
     private String companyCode;
 }
