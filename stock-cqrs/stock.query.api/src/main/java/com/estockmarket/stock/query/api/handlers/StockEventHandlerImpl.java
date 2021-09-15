@@ -51,10 +51,10 @@ public class StockEventHandlerImpl implements StockEventHandler {
     @EventHandler
     @Override
     public void on(StockDeletedEvent event) {
-//        stockRepository.deleteById(event.getId());
-        var stock = stockRepository.findById(event.getId());
-        List<Stock> stockList = stockRepository.findByCompanyCode(stock.get().getCompanyCode());
-        stockRepository.deleteAll(stockList);
+        stockRepository.deleteById(event.getId());
+//        var stock = stockRepository.findById(event.getId());
+//        List<Stock> stockList = stockRepository.findByCompanyCode(stock.get().getCompanyCode());
+//        stockRepository.deleteAll(stockList);
     }
 
     // TODO: 9/14/21 handle delete by companyCode
