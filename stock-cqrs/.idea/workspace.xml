@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="delete by id implemented">
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindAllStocksQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindLatestStockByCompanyCodeQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindStockByIdQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindStocksBetweenStartAndEndDatesQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindStocksByCompanyCodeQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" afterDir="false" />
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Stock Queries created">
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockQueryHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockQueryHandlerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/tdo/StockLookupResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindStocksBetweenStartAndEndDatesQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/queries/FindStocksBetweenStartAndEndDatesQuery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631744580808</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Stock Queries created">
+      <created>1631745963000</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1631745963000</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +225,8 @@
     <MESSAGE value="REST Controller for updating stock added" />
     <MESSAGE value="REST Controller added for deleting stock" />
     <MESSAGE value="delete by id implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete by id implemented" />
+    <MESSAGE value="Stock Queries created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stock Queries created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
