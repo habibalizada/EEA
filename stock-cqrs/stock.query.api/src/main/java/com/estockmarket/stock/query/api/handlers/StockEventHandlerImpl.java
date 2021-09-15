@@ -10,6 +10,8 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @ProcessingGroup("stock-group")
 public class StockEventHandlerImpl implements StockEventHandler {
@@ -49,7 +51,10 @@ public class StockEventHandlerImpl implements StockEventHandler {
     @EventHandler
     @Override
     public void on(StockDeletedEvent event) {
-        stockRepository.deleteById(event.getId());
+//        stockRepository.deleteById(event.getId());
+        var stock = stockRepository.findById(event.getId());
+        List<Stock> stockList = stockRepository.findByCompanyCode(stock.get().getCompanyCode());
+        stockRepository.deleteAll(stockList);
     }
 
     // TODO: 9/14/21 handle delete by companyCode

@@ -27,6 +27,7 @@ spring:
             - Path=/api/v1.0/market/stock/**
 #        TODO Add routes for CreateStockCommand
 #        TODO Add routes for UpdateStockCommand
+#        TODO Add routes for DeleteStockCommand
 
 eureka:
   client:

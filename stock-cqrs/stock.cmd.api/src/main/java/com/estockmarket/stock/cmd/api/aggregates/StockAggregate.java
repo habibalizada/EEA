@@ -60,7 +60,7 @@ public class StockAggregate {
     public void handle(DeleteStockCommand command) {
         var event = StockDeletedEvent.builder()
                 .id(command.getId())
-                .companyCode(command.getCompanyCode());
+                .build();
         AggregateLifecycle.apply(event);
     }
 
