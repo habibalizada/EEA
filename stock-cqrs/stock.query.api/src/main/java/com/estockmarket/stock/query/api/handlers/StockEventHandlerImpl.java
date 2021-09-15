@@ -25,8 +25,10 @@ public class StockEventHandlerImpl implements StockEventHandler {
     @Override
     public void on(StockCreatedEvent event) {
         var stock = Stock.builder()
+                .id(event.getId())
                 .companyCode(event.getCompanyCode())
                 .stockPrice(event.getStockPrice())
+                .createDateTime(event.getCreateDateTime())
                 .build();
         stockRepository.save(stock);
     }

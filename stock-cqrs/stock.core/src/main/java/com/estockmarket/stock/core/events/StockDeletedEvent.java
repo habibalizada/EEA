@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class StockDeletedEvent {
-    private int id;
+//    private int id;
+    private String id;
     private String companyCode;
 }

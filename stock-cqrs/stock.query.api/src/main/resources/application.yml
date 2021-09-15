@@ -6,14 +6,14 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: stock
+      database: stock_cqrs
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/stock
+    url: jdbc:mysql://localhost:3306/stock_cqrs
     username: root
     password: s09c12s09c12
     driver-class-name: com.mysql.jdbc.Driver

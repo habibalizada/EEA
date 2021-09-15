@@ -13,6 +13,6 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 public class DeleteStockCommand {
 
     @TargetAggregateIdentifier
-    private int id;
+    private String id;
     private String companyCode;
 }

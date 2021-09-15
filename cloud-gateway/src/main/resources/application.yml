@@ -25,6 +25,7 @@ spring:
           uri: lb://STOCK-SERVICE
           predicates:
             - Path=/api/v1.0/market/stock/**
+#        Add routes for stock command and stock query here
 
 eureka:
   client:

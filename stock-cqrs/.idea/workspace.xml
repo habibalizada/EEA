@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Stock Aggregate created">
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockEventHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockEventHandlerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" afterDir="false" />
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Stock Event Handler &amp; Repository">
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/CreateStockController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/dto/CreateStockResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/dto/BaseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/aggregates/StockAggregate.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/aggregates/StockAggregate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/CreateStockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/CreateStockCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/DeleteStockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/DeleteStockCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/UpdateStockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/commands/UpdateStockCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockCreatedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockDeletedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockDeletedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockUpdatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/events/StockUpdatedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/models/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockEventHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockEventHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,7 +79,7 @@
       <recent name="com.estockmarket.stock.cmd.api.config" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.StockQueryApplication">
     <configuration name="StockCommandApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.estockmarket.stock.cmd.api.StockCommandApplication" />
       <module name="stock.cmd.api" />
@@ -76,8 +93,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StockQueryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.estockmarket.stock.query.api.StockQueryApplication" />
+      <module name="stock.query.api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.estockmarket.stock.query.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StockQueryApplication" />
         <item itemvalue="Application.StockCommandApplication" />
       </list>
     </recent_temporary>
@@ -140,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631634613703</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Stock Event Handler &amp; Repository">
+      <created>1631638247312</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1631638247312</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +200,33 @@
     <MESSAGE value="Stock Commands created" />
     <MESSAGE value="Stock Events created" />
     <MESSAGE value="Stock Aggregate created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stock Aggregate created" />
+    <MESSAGE value="Stock Event Handler &amp; Repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stock Event Handler &amp; Repository" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/aggregates/StockAggregate.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/aggregates/StockAggregate.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/handlers/StockEventHandlerImpl.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/CreateStockController.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

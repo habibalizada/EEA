@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class StockAggregate {
     @AggregateIdentifier
-    private int id;
+    private String id;
     private String companyCode;
     private BigDecimal stockPrice;
 

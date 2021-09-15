@@ -18,12 +18,13 @@ import java.time.LocalDateTime;
 @Entity
 public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private int id;
+    private String id;
     private String companyCode;
-    @NotNull(message = "Stock price must not be null")
+//    @NotNull(message = "Stock price must not be null")
     private BigDecimal stockPrice;
-    @Column
-    @CreationTimestamp
+//    @Column
+//    @CreationTimestamp
     private LocalDateTime createDateTime;
 }
