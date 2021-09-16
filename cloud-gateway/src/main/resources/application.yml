@@ -28,6 +28,7 @@ spring:
 #        TODO Add routes for CreateStockCommand
 #        TODO Add routes for UpdateStockCommand
 #        TODO Add routes for DeleteStockCommand
+#        TODO Add routes for Stock Queries
 
 eureka:
   client:

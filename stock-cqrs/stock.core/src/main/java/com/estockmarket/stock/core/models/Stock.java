@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
+//@Table(name = "stock")
 public class Stock {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
