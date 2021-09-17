@@ -16,7 +16,7 @@ spring:
     url: jdbc:mysql://localhost:3306/stock_cqrs
     username: root
     password: s09c12s09c12
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 #security:
 #  oauth2:

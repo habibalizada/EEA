@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="Stock Query handler added">
-      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.core/src/main/java/com/estockmarket/stock/core/models/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
