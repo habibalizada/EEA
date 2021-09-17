@@ -17,18 +17,22 @@ spring:
 #              - OPTIONS
 #              - HEAD
       routes:
-        - id: company-service
-          uri: lb://COMPANY-SERVICE
+#        - id: company-service
+#          uri: lb://COMPANY-SERVICE
+#          predicates:
+#            - Path=/api/v1.0/market/company/**
+#        - id: stock-service
+#          uri: lb://STOCK-SERVICE
+#          predicates:
+#            - Path=/api/v1.0/market/stock/**
+        - id: stock-command
+          uri: lb://STOCK-COMMAND
           predicates:
-            - Path=/api/v1.0/market/company/**
-        - id: stock-service
-          uri: lb://STOCK-SERVICE
+            - Path=/api/v1.0/market/stock/command/**
+        - id: stock-query
+          uri: lb://STOCK-QUERY
           predicates:
-            - Path=/api/v1.0/market/stock/**
-#        TODO Add routes for CreateStockCommand
-#        TODO Add routes for UpdateStockCommand
-#        TODO Add routes for DeleteStockCommand
-#        TODO Add routes for Stock Queries
+            - Path=/api/v1.0/market/stock/query/**
 
 eureka:
   client:

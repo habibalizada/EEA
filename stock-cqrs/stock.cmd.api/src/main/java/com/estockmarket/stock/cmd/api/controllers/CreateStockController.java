@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1.0/market/stock")
+@RequestMapping("/api/v1.0/market/stock/command")
 public class CreateStockController {
     private final CommandGateway commandGateway;
 

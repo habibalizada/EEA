@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1.0/market/stock")
+@RequestMapping("/api/v1.0/market/stock/command")
 public class UpdateStockController {
     private final CommandGateway commandGateway;
 
