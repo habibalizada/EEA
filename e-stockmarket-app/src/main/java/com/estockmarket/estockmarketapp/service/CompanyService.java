@@ -2,6 +2,7 @@ package com.estockmarket.estockmarketapp.service;
 
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyFeignClient;
+import com.estockmarket.estockmarketapp.client.StockQueryFeignClient;
 import com.estockmarket.estockmarketapp.common.*;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
@@ -22,6 +23,9 @@ public class CompanyService {
 
     @Autowired
     private CompanyFeignClient companyFeignClient;
+
+    @Autowired
+    private StockQueryFeignClient stockQueryFeignClient;
 
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
@@ -48,16 +52,16 @@ public class CompanyService {
         return new TransactionResponse(company, stock);
     }
 
-    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
-        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
-        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code);
-        if (stock == null){
-            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
-        }
-        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
-        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
-        return ResponseEntity.ok().body(transactionResponse);
-    }
+//    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
+//        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
+//        Stock stock = stockQueryFeignClient.getLatestStockByCompanyCode(code);
+//        if (stock == null){
+//            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
+//        }
+//        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
+//        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
+//        return ResponseEntity.ok().body(transactionResponse);
+//    }
 
     public List<TransactionResponse> getAllCompanies() {
         List<Company> companies = companyDao.findAll();
@@ -65,7 +69,7 @@ public class CompanyService {
         List<TransactionResponse> transactionResponseList = new ArrayList<>();
         if (companies.size() > 0) {
             for (Company company : companies) {
-                latestStock = companyFeignClient.getLatestStockByCompanyCode(company.getCode());
+                latestStock = stockQueryFeignClient.getLatestStockByCompanyCode(company.getCode());
                 transactionResponseList.add(new TransactionResponse(company, latestStock));
             }
             return transactionResponseList;
@@ -105,6 +109,6 @@ public class CompanyService {
     }
 
     public List<Stock> getAllStocksResponse() {
-        return companyFeignClient.getAllStocks();
+        return stockQueryFeignClient.getAllStocks();
     }
 }
