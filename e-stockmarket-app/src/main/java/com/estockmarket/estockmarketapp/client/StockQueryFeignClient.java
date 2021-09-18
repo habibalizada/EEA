@@ -1,19 +1,15 @@
 package com.estockmarket.estockmarketapp.client;
 
-import com.estockmarket.estockmarketapp.common.StockRequest;
 import com.estockmarket.estockmarketapp.common.Stock;
+import com.estockmarket.estockmarketapp.common.StockRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 //@FeignClient(url = "http://localhost:9191/api/v1.0/market/stock", name = "COMPANY-CLIENT")
-@FeignClient("STOCK-COMMAND/api/v1.0/market/stock/command")
-public interface CompanyFeignClient {
-
-    @PostMapping("add/{companycode}")
-    Stock addStock(@RequestBody StockRequest stockRequest, @PathVariable("companycode") String companycode);
+@FeignClient("STOCK-QUERY/api/v1.0/market/stock/query")
+public interface StockQueryFeignClient {
 
     @GetMapping("/getall")
     List<Stock> getAllStocks();
@@ -23,10 +19,4 @@ public interface CompanyFeignClient {
 
     @GetMapping("/info/{companycode}")
     List<Stock> getCompanyByCode(@PathVariable String companycode);
-
-    @DeleteMapping("/delete/{companycode}")
-    void deleteStockByCompanyCode(@PathVariable String companycode);
-
-    @PutMapping("/update-all")
-    List<Stock> updateAllStocks(@RequestBody List<Stock> stocks);
 }

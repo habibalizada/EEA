@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="hibernate.dialect resolved">
-      <change afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/client/StockQueryFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/BaseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/StockLookupResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/client/CompanyFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/client/CompanyFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/StockCommandApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/StockCommandApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/CreateStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/CreateStockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/DeleteStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/DeleteStockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/UpdateStockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.cmd.api/src/main/java/com/estockmarket/stock/cmd/api/controllers/UpdateStockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/StockQueryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/StockQueryApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +65,8 @@
       <recent name="$PROJECT_DIR$/stock.query.api/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.estockmarket.stock.query.api.queries" />
       <recent name="com.estockmarket.stock.cmd.api.commands" />
+      <recent name="com.estockmarket.stock.query.api.queries" />
       <recent name="com.estockmarket.stock.cmd.api.config" />
     </key>
   </component>
@@ -282,28 +280,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>26</line>
+          <line>30</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>45</line>
+          <line>52</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>64</line>
+          <line>72</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>83</line>
+          <line>94</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="23" />
+          <line>114</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

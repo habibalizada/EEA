@@ -17,10 +17,10 @@ spring:
 #              - OPTIONS
 #              - HEAD
       routes:
-#        - id: company-service
-#          uri: lb://COMPANY-SERVICE
-#          predicates:
-#            - Path=/api/v1.0/market/company/**
+        - id: company-service
+          uri: lb://COMPANY-SERVICE
+          predicates:
+            - Path=/api/v1.0/market/company/**
 #        - id: stock-service
 #          uri: lb://STOCK-SERVICE
 #          predicates:
