@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="hibernate.dialect resolved">
-      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/BaseResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/common/StockLookupResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

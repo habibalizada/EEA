@@ -62,24 +62,20 @@ public class StockLookupController {
     }
 
     @GetMapping("/info/{companycode}")
-//    public ResponseEntity<StockLookupResponse> getStocksByCompanyCode(@PathVariable(value = "companycode") String companycode) {
-    public Stock getStocksByCompanyCode(@PathVariable(value = "companycode") String companycode) {
+    public List<Stock> getStocksByCompanyCode(@PathVariable(value = "companycode") String companycode) {
         try {
             var query = new FindStocksByCompanyCodeQuery(companycode);
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-//                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
                 return null;
             }
 
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-            return response.getStocks().get(0);
+            return response.getStocks();
         } catch (Exception e) {
             var safeErrorMessage = "Failed to complete get a Stocks by Company Code request";
             System.out.println(e.toString());
 
-//            return new ResponseEntity<>(new StockLookupResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
             return null;
         }
     }
