@@ -1,6 +1,7 @@
 package com.estockmarket.estockmarketapp.controller;
 
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
+import com.estockmarket.estockmarketapp.client.StockQueryFeignClient;
 import com.estockmarket.estockmarketapp.common.Stock;
 import com.estockmarket.estockmarketapp.common.TranResWithAllStocks;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
@@ -23,6 +24,9 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private StockQueryFeignClient stockQueryFeignClient;
+
 //    @PostMapping("/register")
 //    public Company registerCompany(@Valid @RequestBody Company company) {
 //        return companyService.registerCompany(company);
@@ -31,7 +35,9 @@ public class CompanyController {
     @PostMapping("/register")
     public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
-            TransactionResponse transactionResponse = companyService.registerCompanyWithTransObject(transactionRequest);
+            companyService.registerCompanyWithTransObject(transactionRequest);
+            var stock = stockQueryFeignClient.getLatestStockByCompanyCode(transactionRequest.getCompany().getCode());
+            TransactionResponse transactionResponse = new TransactionResponse(transactionRequest.getCompany(),stock);
             return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
 
         } catch (ConstraintViolationException e) {

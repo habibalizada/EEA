@@ -31,7 +31,7 @@ public class CompanyService {
     private SequenceGeneratorService sequenceGeneratorService;
 
 
-    public TransactionResponse registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException {
+    public void registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException {
         Company company = transactionRequest.getCompany();
         StockRequest stockRequest = transactionRequest.getStockRequest();
         Stock stock;
@@ -46,10 +46,11 @@ public class CompanyService {
             company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
             companyDao.save(company);
             // Rest call
-            stock = companyFeignClient.addStock(stockRequest, company.getCode());
+            companyFeignClient.addStock(stockRequest, company.getCode());
+//            stock = companyFeignClient.getLatestStockByCompanyCode(company.getCode());
 
         }
-        return new TransactionResponse(company, stock);
+//        return new TransactionResponse(company, stock);
     }
 
     public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {

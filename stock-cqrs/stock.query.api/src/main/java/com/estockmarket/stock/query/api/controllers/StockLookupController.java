@@ -92,7 +92,6 @@ public class StockLookupController {
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-//                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
                 return new ResponseStock();
             }
 

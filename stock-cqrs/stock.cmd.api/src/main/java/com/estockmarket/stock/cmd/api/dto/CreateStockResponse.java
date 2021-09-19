@@ -5,7 +5,7 @@ import com.estockmarket.stock.core.dto.BaseResponse;
 public class CreateStockResponse extends BaseResponse {
     private String companyCode;
 
-    public CreateStockResponse(String message, String companyCode) {
+    public CreateStockResponse(String companyCode, String message) {
         super(message);
         this.companyCode = companyCode;
     }
