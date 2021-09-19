@@ -52,16 +52,16 @@ public class CompanyService {
         return new TransactionResponse(company, stock);
     }
 
-//    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
-//        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
-//        Stock stock = stockQueryFeignClient.getLatestStockByCompanyCode(code);
-//        if (stock == null){
-//            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
-//        }
-//        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
-//        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
-//        return ResponseEntity.ok().body(transactionResponse);
-//    }
+    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
+        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
+        Stock stock = stockQueryFeignClient.getLatestStockByCompanyCode(code);
+        if (stock == null){
+            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
+        }
+        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
+        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
+        return ResponseEntity.ok().body(transactionResponse);
+    }
 
     public List<TransactionResponse> getAllCompanies() {
         List<Company> companies = companyDao.findAll();

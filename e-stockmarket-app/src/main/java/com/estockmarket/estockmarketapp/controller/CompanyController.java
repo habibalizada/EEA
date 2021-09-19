@@ -41,14 +41,14 @@ public class CompanyController {
         }
     }
 
-//    @GetMapping("/info/{companycode}")
-//    public ResponseEntity<?> getCompanyByCode(@PathVariable String companycode) {
-//        try {
-//            return companyService.getCompanyByCode(companycode);
-//        } catch (CompanyCollectionException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/info/{companycode}")
+    public ResponseEntity<?> getCompanyByCode(@PathVariable String companycode) {
+        try {
+            return companyService.getCompanyByCode(companycode);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 
     @DeleteMapping("/delete/{companycode}")
     public ResponseEntity<?> deleteCompanyByCode(@PathVariable String companycode) {
