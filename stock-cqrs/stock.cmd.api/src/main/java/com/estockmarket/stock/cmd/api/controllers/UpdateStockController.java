@@ -25,15 +25,12 @@ public class UpdateStockController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<BaseResponse> updateStock(@Valid @RequestBody UpdateStockCommand command) {
+    public void updateStock(@Valid @RequestBody UpdateStockCommand command) {
         try {
             commandGateway.send(command);
-            return new ResponseEntity<>(new BaseResponse("Stock successfully updated!"), HttpStatus.OK);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to update stock id - " + command.getId();
             System.out.println(e.toString());
-
-            return new ResponseEntity<>(new BaseResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -3,7 +3,10 @@ package com.estockmarket.estockmarketapp.service;
 import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyFeignClient;
 import com.estockmarket.estockmarketapp.client.StockQueryFeignClient;
-import com.estockmarket.estockmarketapp.common.*;
+import com.estockmarket.estockmarketapp.common.Stock;
+import com.estockmarket.estockmarketapp.common.StockRequest;
+import com.estockmarket.estockmarketapp.common.TransactionRequest;
+import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,19 +50,16 @@ public class CompanyService {
             companyDao.save(company);
             // Rest call
             companyFeignClient.addStock(stockRequest, company.getCode());
-//            stock = companyFeignClient.getLatestStockByCompanyCode(company.getCode());
 
         }
-//        return new TransactionResponse(company, stock);
     }
 
     public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
         Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
         Stock stock = stockQueryFeignClient.getLatestStockByCompanyCode(code);
-        if (stock == null){
+        if (stock == null) {
             throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
         }
-        //        Stock stock = companyFeignClient.getLatestStockByCompanyCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code)));
         TransactionResponse transactionResponse = new TransactionResponse(company, stock);
         return ResponseEntity.ok().body(transactionResponse);
     }
@@ -101,11 +101,11 @@ public class CompanyService {
     public Company updateCompany(Company company) {
         long id = company.getId();
         Company oldCompany = companyDao.findById(id).get();
-        List<Stock> oldStoks = companyFeignClient.getCompanyByCode(oldCompany.getCode());
-        for (int i = 0; i < oldStoks.size(); i++) {
-            oldStoks.get(i).setCompanyCode(company.getCode());
+        List<Stock> oldStoks = stockQueryFeignClient.getCompanyByCode(oldCompany.getCode());
+        for (Stock stock : oldStoks) {
+            stock.setCompanyCode(company.getCode());
+            companyFeignClient.updateStock(stock);
         }
-        companyFeignClient.updateAllStocks(oldStoks);
         return companyDao.save(company);
     }
 

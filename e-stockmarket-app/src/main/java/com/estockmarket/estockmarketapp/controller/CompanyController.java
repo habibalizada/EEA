@@ -27,11 +27,6 @@ public class CompanyController {
     @Autowired
     private StockQueryFeignClient stockQueryFeignClient;
 
-//    @PostMapping("/register")
-//    public Company registerCompany(@Valid @RequestBody Company company) {
-//        return companyService.registerCompany(company);
-//    }
-
     @PostMapping("/register")
     public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
