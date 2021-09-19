@@ -2,6 +2,7 @@ package com.estockmarket.stock.query.api.controllers;
 
 import com.estockmarket.stock.core.models.Stock;
 import com.estockmarket.stock.query.api.queries.*;
+import com.estockmarket.stock.query.api.tdo.ResponseStock;
 import com.estockmarket.stock.query.api.tdo.StockLookupResponse;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -81,21 +85,38 @@ public class StockLookupController {
     }
 
     @GetMapping("/get/{companycode}/{startdate}/{enddate}")
-    public ResponseEntity<StockLookupResponse> getStocksBetweenStartAndEndDates(@PathVariable(value = "companycode") String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
+    public ResponseStock getStocksBetweenStartAndEndDates(@PathVariable(value = "companycode") String companycode, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate) {
         try {
+
             var query = new FindStocksBetweenStartAndEndDatesQuery(companycode, startdate, enddate);
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                return new ResponseStock();
             }
 
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            List<BigDecimal> prices = new ArrayList<>();
+            BigDecimal total = new BigDecimal(0);
+            var stocks = response.getStocks();
+            for (Stock s: stocks) {
+                prices.add(s.getStockPrice());
+                total = total.add(s.getStockPrice());
+            }
+
+            BigDecimal min = Collections.min(prices);
+            BigDecimal max = Collections.max(prices);
+
+            double avgInDouble = total.doubleValue()/stocks.size();
+
+            return new ResponseStock(stocks,min,max,BigDecimal.valueOf(avgInDouble));
+
         } catch (Exception e) {
             var safeErrorMessage = "Failed to complete get a Stocks between start and end dates request";
             System.out.println(e.toString());
 
-            return new ResponseEntity<>(new StockLookupResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseStock();
+
         }
     }
 

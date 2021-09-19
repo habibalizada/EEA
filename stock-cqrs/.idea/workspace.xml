@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="hibernate.dialect resolved">
+    <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="get stock by company code corrected">
+      <change afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/tdo/ResponseStock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/repositories/StockRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +49,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -56,6 +60,7 @@
       <recent name="$PROJECT_DIR$/stock.query.api/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.estockmarket.stock.query.api.tdo" />
       <recent name="com.estockmarket.stock.cmd.api.commands" />
       <recent name="com.estockmarket.stock.query.api.queries" />
       <recent name="com.estockmarket.stock.cmd.api.config" />
@@ -209,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631897949283</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="get stock by company code corrected">
+      <created>1632082331669</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1632082331669</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,7 +252,8 @@
     <MESSAGE value="Stock Queries created" />
     <MESSAGE value="Stock Query handler added" />
     <MESSAGE value="hibernate.dialect resolved" />
-    <option name="LAST_COMMIT_MESSAGE" value="hibernate.dialect resolved" />
+    <MESSAGE value="get stock by company code corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="get stock by company code corrected" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -272,18 +285,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>47</line>
+          <line>51</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>29</line>
+          <line>33</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="31" />
+          <line>90</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
