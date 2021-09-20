@@ -18,5 +18,5 @@ public interface StockQueryFeignClient {
     Stock getLatestStockByCompanyCode(@PathVariable String companycode);
 
     @GetMapping("/info/{companycode}")
-    List<Stock> getCompanyByCode(@PathVariable String companycode);
+    List<Stock> getStocksByCompanyCode(@PathVariable String companycode);
 }

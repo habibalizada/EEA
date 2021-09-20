@@ -22,19 +22,15 @@ public class DeleteStockController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<BaseResponse> deleteStockByCompanyCode(@PathVariable(value = "id") String id) {
+    public void deleteStockById(@PathVariable(value = "id") String id) {
         try {
             var command = DeleteStockCommand.builder()
                     .id(id)
                     .build();
             commandGateway.send(command);
-            return new ResponseEntity<>(new BaseResponse("Bank account successfully deleted!"), HttpStatus.OK);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to delete stock with id - " + id;
             System.out.println(e.toString());
-
-            return new ResponseEntity<>(new BaseResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
     }
 }

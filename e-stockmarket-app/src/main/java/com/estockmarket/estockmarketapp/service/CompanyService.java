@@ -84,8 +84,12 @@ public class CompanyService {
         if (!company.isPresent()) {
             throw new CompanyCollectionException(CompanyCollectionException.NotFoundException(code));
         } else {
+            var stocks = stockQueryFeignClient.getStocksByCompanyCode(code);
+            for (Stock s: stocks) {
+                companyFeignClient.deleteStockById(s.getId());
+            }
             companyDao.delete(company.get());
-            companyFeignClient.deleteStockByCompanyCode(code);
+//            companyFeignClient.deleteStockByCompanyCode(code);
         }
     }
 
@@ -101,7 +105,7 @@ public class CompanyService {
     public Company updateCompany(Company company) {
         long id = company.getId();
         Company oldCompany = companyDao.findById(id).get();
-        List<Stock> oldStoks = stockQueryFeignClient.getCompanyByCode(oldCompany.getCode());
+        List<Stock> oldStoks = stockQueryFeignClient.getStocksByCompanyCode(oldCompany.getCode());
         for (Stock stock : oldStoks) {
             stock.setCompanyCode(company.getCode());
             companyFeignClient.updateStock(stock);
