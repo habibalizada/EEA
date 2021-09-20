@@ -31,9 +31,7 @@ public class CompanyController {
     public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
             companyService.registerCompanyWithTransObject(transactionRequest);
-            var stock = stockQueryFeignClient.getLatestStockByCompanyCode(transactionRequest.getCompany().getCode());
-            TransactionResponse transactionResponse = new TransactionResponse(transactionRequest.getCompany(),stock);
-            return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -77,8 +75,13 @@ public class CompanyController {
     }
 
     @PutMapping("/update")
-    public Company updateCompany(@Valid @RequestBody Company company) {
-        return companyService.updateCompany(company);
+    public ResponseEntity<?> updateCompany(@Valid @RequestBody Company company) {
+        try {
+            companyService.updateCompany(company);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (CompanyCollectionException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping("/stocks")

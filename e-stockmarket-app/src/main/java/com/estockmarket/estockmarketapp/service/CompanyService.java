@@ -102,7 +102,12 @@ public class CompanyService {
         }
     }
 
-    public Company updateCompany(Company company) {
+    public Company updateCompany(Company company) throws CompanyCollectionException{
+        Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
+        if (optionalCompany.isPresent()) {
+            throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
+        }
+
         long id = company.getId();
         Company oldCompany = companyDao.findById(id).get();
         List<Stock> oldStoks = stockQueryFeignClient.getStocksByCompanyCode(oldCompany.getCode());
