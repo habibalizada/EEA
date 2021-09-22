@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bb398a9-3427-4088-bac7-5899e2b107a2" name="Changes" comment="getStocksBetweenStartAndEndDates implemented">
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/java/com/estockmarket/estockmarketapp/service/CompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-stockmarket-app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../e-stockmarket-app/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +66,7 @@
       <recent name="com.estockmarket.stock.cmd.api.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StockCommandApplication">
+  <component name="RunManager" selected="Application.StockQueryApplication">
     <configuration name="StockCommandApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.estockmarket.stock.cmd.api.StockCommandApplication" />
       <module name="stock.cmd.api" />
@@ -94,8 +95,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StockCommandApplication" />
         <item itemvalue="Application.StockQueryApplication" />
+        <item itemvalue="Application.StockCommandApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -304,6 +305,16 @@
           <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
           <line>70</line>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/stock.query.api/src/main/java/com/estockmarket/stock/query/api/controllers/StockLookupController.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
