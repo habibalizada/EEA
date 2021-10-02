@@ -89,7 +89,6 @@ public class CompanyService {
                 companyFeignClient.deleteStockById(s.getId());
             }
             companyDao.delete(company.get());
-//            companyFeignClient.deleteStockByCompanyCode(code);
         }
     }
 
@@ -103,13 +102,9 @@ public class CompanyService {
     }
 
     public Company updateCompany(Company company) throws CompanyCollectionException{
-        Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
-        if (optionalCompany.isPresent()) {
-            throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
-        }
 
-        long id = company.getId();
-        Company oldCompany = companyDao.findById(id).get();
+        Company oldCompany = companyDao.findById(company.getId()).get();
+
         List<Stock> oldStoks = stockQueryFeignClient.getStocksByCompanyCode(oldCompany.getCode());
         for (Stock stock : oldStoks) {
             stock.setCompanyCode(company.getCode());
