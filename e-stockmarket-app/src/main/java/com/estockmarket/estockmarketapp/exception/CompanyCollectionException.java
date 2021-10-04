@@ -1,9 +1,10 @@
-package com.estockmarket.estockmarketapp.Exception;
+package com.estockmarket.estockmarketapp.exception;
 
 public class CompanyCollectionException  extends Exception{
 
     private  static final long serialVersionUID = 1L;
     private static final String NOT_FOUND_TXT = " not found";
+    private static final String COMPANY_EXIST_MSG = "Company with given code already exists";
 
     public CompanyCollectionException(String message) {
         super(message);
@@ -18,7 +19,7 @@ public class CompanyCollectionException  extends Exception{
     }
 
     public static String companyAlreadyExists() {
-        return "Company with given code already exists";
+        return COMPANY_EXIST_MSG;
     }
 
     public static String notFoundWithIdException(Long id) {

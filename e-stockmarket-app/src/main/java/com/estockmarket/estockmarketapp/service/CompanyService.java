@@ -1,6 +1,6 @@
 package com.estockmarket.estockmarketapp.service;
 
-import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
+import com.estockmarket.estockmarketapp.exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.CompanyFeignClient;
 import com.estockmarket.estockmarketapp.client.StockQueryFeignClient;
 import com.estockmarket.estockmarketapp.common.Stock;
@@ -11,7 +11,6 @@ import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
 import com.estockmarket.estockmarketapp.model.RequestCompany;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolationException;
@@ -38,7 +37,6 @@ public class CompanyService {
     public void registerCompanyWithTransObject(TransactionRequest transactionRequest) throws ConstraintViolationException, CompanyCollectionException {
         Company company = transactionRequest.getCompany();
         StockRequest stockRequest = transactionRequest.getStockRequest();
-        Stock stock;
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
         // To make sure company code is unique
         if (optionalCompany.isPresent()) {
@@ -62,14 +60,13 @@ public class CompanyService {
             throw new CompanyCollectionException(CompanyCollectionException.stockNotFoundException(code));
         }
         return  new TransactionResponse(company, stock);
-//        return ResponseEntity.ok().body(transactionResponse);
     }
 
     public List<TransactionResponse> getAllCompanies() {
         List<Company> companies = companyDao.findAll();
         Stock latestStock;
         List<TransactionResponse> transactionResponseList = new ArrayList<>();
-        if (companies.size() > 0) {
+        if (!companies.isEmpty()) {
             for (Company company : companies) {
                 latestStock = stockQueryFeignClient.getLatestStockByCompanyCode(company.getCode());
                 transactionResponseList.add(new TransactionResponse(company, latestStock));

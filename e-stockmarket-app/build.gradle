@@ -47,3 +47,12 @@ dependencyManagement {
 test {
 	useJUnitPlatform()
 }
+
+sonarqube {
+	properties {
+		property 'sonar.projectKey', 'e-stockmarket'
+		property 'sonar.host.url', 'http://localhost:9000'
+		property 'sonar.login', 'a6361c6440dd8fbf44090ed349aef54c6d33381d'
+		property 'sonar.coverage.exclusions', '**/*.*'
+	}
+}

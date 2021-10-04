@@ -1,9 +1,8 @@
 package com.estockmarket.estockmarketapp.controller;
 
-import com.estockmarket.estockmarketapp.Exception.CompanyCollectionException;
+import com.estockmarket.estockmarketapp.exception.CompanyCollectionException;
 import com.estockmarket.estockmarketapp.client.StockQueryFeignClient;
 import com.estockmarket.estockmarketapp.common.Stock;
-import com.estockmarket.estockmarketapp.common.TranResWithAllStocks;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
@@ -32,8 +31,7 @@ public class CompanyController {
     public ResponseEntity<String> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
             companyService.registerCompanyWithTransObject(transactionRequest);
-//            return new ResponseEntity<>(HttpStatus.OK);
-            return ResponseEntity.ok("Company registered successfully!");
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
         } catch (CompanyCollectionException e) {
@@ -45,15 +43,15 @@ public class CompanyController {
     public ResponseEntity<TransactionResponse> getCompanyByCode(@PathVariable String companycode) {
         try {
             TransactionResponse transactionResponse = companyService.getCompanyByCode(companycode);
-            return ResponseEntity.ok(transactionResponse);
+            return new ResponseEntity<>(transactionResponse, HttpStatus.OK);
 
         } catch (CompanyCollectionException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new TransactionResponse(), HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/delete/{companycode}")
-    public ResponseEntity<?> deleteCompanyByCode(@PathVariable String companycode) {
+    public ResponseEntity<String> deleteCompanyByCode(@PathVariable String companycode) {
         try {
             companyService.deleteCompanyByCode(companycode);
             return new ResponseEntity<>("Successfully deleted company with code:" + companycode, HttpStatus.OK);
@@ -63,17 +61,18 @@ public class CompanyController {
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<?> getAllCompanies() {
+    public ResponseEntity<List<TransactionResponse>> getAllCompanies() {
         List<TransactionResponse> transactionResponseList = companyService.getAllCompanies();
-        return new ResponseEntity<>(transactionResponseList, transactionResponseList.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(transactionResponseList, !transactionResponseList.isEmpty() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCompanyById(@PathVariable Long id) {
+    public ResponseEntity<Company> getCompanyById(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(companyService.getCompanyById(id), HttpStatus.OK);
         } catch (CompanyCollectionException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Company(), HttpStatus.NOT_FOUND);
         }
     }
 

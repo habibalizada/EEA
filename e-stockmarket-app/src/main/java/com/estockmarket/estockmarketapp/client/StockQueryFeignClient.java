@@ -1,13 +1,12 @@
 package com.estockmarket.estockmarketapp.client;
 
 import com.estockmarket.estockmarketapp.common.Stock;
-import com.estockmarket.estockmarketapp.common.StockRequest;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-//@FeignClient(url = "http://localhost:9191/api/v1.0/market/stock", name = "COMPANY-CLIENT")
 @FeignClient("STOCK-QUERY/api/v1.0/market/stock/query")
 public interface StockQueryFeignClient {
 
