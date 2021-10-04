@@ -11,9 +11,6 @@ public interface CompanyFeignClient {
     @PostMapping("add/{companycode}")
     Stock addStock(@RequestBody StockRequest stockRequest, @PathVariable("companycode") String companycode);
 
-//    @DeleteMapping("/delete/{companycode}")
-//    void deleteStockByCompanyCode(@PathVariable String companycode);
-
     @DeleteMapping("/delete/{id}")
     void deleteStockById(@PathVariable String id);
 

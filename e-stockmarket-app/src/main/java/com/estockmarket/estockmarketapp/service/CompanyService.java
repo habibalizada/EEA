@@ -9,6 +9,7 @@ import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
+import com.estockmarket.estockmarketapp.model.RequestCompany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class CompanyService {
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
         // To make sure company code is unique
         if (optionalCompany.isPresent()) {
-            throw new CompanyCollectionException(CompanyCollectionException.CompanyAlreadyExists());
+            throw new CompanyCollectionException(CompanyCollectionException.companyAlreadyExists());
         } else if (stockRequest.getStockPrice() == null) {
             throw new CompanyCollectionException("Stock price can't be null");
 
@@ -54,14 +55,14 @@ public class CompanyService {
         }
     }
 
-    public ResponseEntity<?> getCompanyByCode(String code) throws CompanyCollectionException {
-        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.NotFoundException(code)));
+    public TransactionResponse getCompanyByCode(String code) throws CompanyCollectionException {
+        Company company = companyDao.findByCode(code).orElseThrow(() -> new CompanyCollectionException(CompanyCollectionException.notFoundException(code)));
         Stock stock = stockQueryFeignClient.getLatestStockByCompanyCode(code);
         if (stock == null) {
-            throw new CompanyCollectionException(CompanyCollectionException.StockNotFoundException(code));
+            throw new CompanyCollectionException(CompanyCollectionException.stockNotFoundException(code));
         }
-        TransactionResponse transactionResponse = new TransactionResponse(company, stock);
-        return ResponseEntity.ok().body(transactionResponse);
+        return  new TransactionResponse(company, stock);
+//        return ResponseEntity.ok().body(transactionResponse);
     }
 
     public List<TransactionResponse> getAllCompanies() {
@@ -82,7 +83,7 @@ public class CompanyService {
     public void deleteCompanyByCode(String code) throws CompanyCollectionException {
         Optional<Company> company = companyDao.findByCode(code);
         if (!company.isPresent()) {
-            throw new CompanyCollectionException(CompanyCollectionException.NotFoundException(code));
+            throw new CompanyCollectionException(CompanyCollectionException.notFoundException(code));
         } else {
             var stocks = stockQueryFeignClient.getStocksByCompanyCode(code);
             for (Stock s: stocks) {
@@ -95,17 +96,18 @@ public class CompanyService {
     public Company getCompanyById(Long id) throws CompanyCollectionException {
         Optional<Company> company = companyDao.findById(id);
         if (!company.isPresent()) {
-            throw new CompanyCollectionException(CompanyCollectionException.NotFoundWithIdException(id));
+            throw new CompanyCollectionException(CompanyCollectionException.notFoundWithIdException(id));
         } else {
             return company.get();
         }
     }
 
-    public Company updateCompany(Company company) throws CompanyCollectionException{
+    public Company updateCompany(RequestCompany requestCompany) throws CompanyCollectionException{
+        Company company = new Company(requestCompany.getId(),requestCompany.getCode(),requestCompany.getName(),requestCompany.getCeo(),requestCompany.getTurnover(),requestCompany.getWebsite(),requestCompany.getEnlistedStockExchange());
 
         Optional<Company> oldCompany = companyDao.findById(company.getId());
         if (!oldCompany.isPresent()) {
-            throw new CompanyCollectionException(CompanyCollectionException.NotFoundWithIdException(company.getId()));
+            throw new CompanyCollectionException(CompanyCollectionException.notFoundWithIdException(company.getId()));
         }
         List<Stock> oldStoks = stockQueryFeignClient.getStocksByCompanyCode(oldCompany.get().getCode());
         for (Stock stock : oldStoks) {

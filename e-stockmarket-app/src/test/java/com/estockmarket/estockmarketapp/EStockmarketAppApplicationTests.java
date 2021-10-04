@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class EStockmarketAppApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads() {//NOSONAR
 	}
 
 }

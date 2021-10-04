@@ -7,6 +7,7 @@ import com.estockmarket.estockmarketapp.common.TranResWithAllStocks;
 import com.estockmarket.estockmarketapp.common.TransactionRequest;
 import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.model.Company;
+import com.estockmarket.estockmarketapp.model.RequestCompany;
 import com.estockmarket.estockmarketapp.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,11 +29,11 @@ public class CompanyController {
     private StockQueryFeignClient stockQueryFeignClient;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
+    public ResponseEntity<String> registerCompany(@Valid @RequestBody TransactionRequest transactionRequest) {
         try {
             companyService.registerCompanyWithTransObject(transactionRequest);
-            return new ResponseEntity<>(HttpStatus.OK);
-
+//            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Company registered successfully!");
         } catch (ConstraintViolationException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
         } catch (CompanyCollectionException e) {
@@ -41,11 +42,13 @@ public class CompanyController {
     }
 
     @GetMapping("/info/{companycode}")
-    public ResponseEntity<?> getCompanyByCode(@PathVariable String companycode) {
+    public ResponseEntity<TransactionResponse> getCompanyByCode(@PathVariable String companycode) {
         try {
-            return companyService.getCompanyByCode(companycode);
+            TransactionResponse transactionResponse = companyService.getCompanyByCode(companycode);
+            return ResponseEntity.ok(transactionResponse);
+
         } catch (CompanyCollectionException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -75,9 +78,9 @@ public class CompanyController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateCompany(@Valid @RequestBody Company company) {
+    public ResponseEntity<String> updateCompany(@Valid @RequestBody RequestCompany requestCompany) {
         try {
-            companyService.updateCompany(company);
+            companyService.updateCompany(requestCompany);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (CompanyCollectionException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
