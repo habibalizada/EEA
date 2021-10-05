@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StockCommandApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads() { //NOSONAR
 	}
 
 }

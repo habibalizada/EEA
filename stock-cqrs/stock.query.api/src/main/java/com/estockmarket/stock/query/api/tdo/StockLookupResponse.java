@@ -5,6 +5,7 @@ import com.estockmarket.stock.core.models.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StockLookupResponse extends BaseResponse {
     private List<Stock> stocks;
@@ -30,5 +31,19 @@ public class StockLookupResponse extends BaseResponse {
 
     public void setStocks(List<Stock> stocks) {
         this.stocks = stocks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        StockLookupResponse that = (StockLookupResponse) o;
+        return Objects.equals(stocks, that.stocks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), stocks);
     }
 }

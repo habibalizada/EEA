@@ -1,4 +1,4 @@
 package com.estockmarket.stock.query.api.queries;
 
-public class FindAllStocksQuery {
+public class FindAllStocksQuery { //NOSONAR
 }
