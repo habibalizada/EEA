@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,16 +15,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-//@Table(name = "stock")
 public class Stock {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private int id;
     private String id;
     private String companyCode;
-//    @NotNull(message = "Stock price must not be null")
     private BigDecimal stockPrice;
-//    @Column
-//    @CreationTimestamp
     private LocalDateTime createDateTime;
 }

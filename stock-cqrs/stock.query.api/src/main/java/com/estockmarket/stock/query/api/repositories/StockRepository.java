@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface StockRepository extends CrudRepository<Stock, String> {
@@ -17,14 +16,5 @@ public interface StockRepository extends CrudRepository<Stock, String> {
 
     @Query(value = "SELECT * FROM stock s WHERE s.company_code = :companycode AND s.create_date_time BETWEEN :startdate  AND :enddate", nativeQuery = true)
     List<Stock> findStocksBetweenStartAndEndDates(@Param("companycode") String companycode, @Param("startdate") String startdate, @Param("enddate") String enddate);
-//
-//    @Query(value = "SELECT MAX(stock_price) FROM stock_cqrs.stock WHERE company_code = :companycode", nativeQuery = true)
-//    BigDecimal findMaxStockPrice(@Param("companycode") String companycode);
-//
-//    @Query(value = "SELECT MIN(stock_price) FROM stock_cqrs.stock WHERE company_code = :companycode", nativeQuery = true)
-//    BigDecimal findMinStockPrice(@Param("companycode") String companycode);
-//
-//    @Query(value = "SELECT AVG(stock_price) FROM stock_cqrs.stock WHERE company_code = :companycode", nativeQuery = true)
-//    BigDecimal findAvgStockPrice(@Param("companycode") String companycode);
 
 }

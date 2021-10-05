@@ -6,7 +6,6 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +32,6 @@ public class CreateStockController {
 
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to add a stock for company code - " + companycode;
-            System.out.println(e.toString());
 
             return new ResponseEntity<>(new CreateStockResponse(companycode, safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
 

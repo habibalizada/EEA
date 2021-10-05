@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 @Service
 public class StockQueryHandlerImpl implements StockQueryHandler {
+    public static final String SUCCESSFULLY_RETURNED = "Successfully returned ";
+    public static final String NO_STOCKS_WERE_FOUND = "No Stocks were found!";
     private final StockRepository stockRepository;
 
     @Autowired
@@ -24,31 +26,29 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
     public StockLookupResponse findAllStocks(FindAllStocksQuery query) {
         var stockIterator = stockRepository.findAll();
         if (!stockIterator.iterator().hasNext()){
-            return new StockLookupResponse("No Stocks were found!");
+            return new StockLookupResponse(NO_STOCKS_WERE_FOUND);
         }
         var stocks = new ArrayList<Stock>();
-        stockIterator.forEach(i -> stocks.add(i));
-        return new StockLookupResponse("Successfully returned " + stocks.size() + " Stock(s)!", stocks);
+        stockIterator.forEach(stocks::add);
+        return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stock(s)!", stocks);
     }
 
     @QueryHandler
     @Override
     public StockLookupResponse findLatestStockByCompanyCode(FindLatestStockByCompanyCodeQuery query) {
         var stock = stockRepository.findLatestStockByCompany(query.getCompanyCode());
-        var response = stock != null
+        return  stock != null
                 ? new StockLookupResponse("Stock successfully returned!", stock)
                 : new StockLookupResponse("No Stock found for company code: " + query.getCompanyCode());
-        return response;
     }
 
     @QueryHandler
     @Override
     public StockLookupResponse findStockById(FindStockByIdQuery query) {
         var stock = stockRepository.findById(query.getId());
-        var response = stock.isPresent()
+        return stock.isPresent()
                 ? new StockLookupResponse("Stock successfully returned!" ,stock.get())
                 : new StockLookupResponse("No Stock found for ID: " + query.getId());
-        return response;
     }
 
     @QueryHandler
@@ -56,9 +56,9 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
     public StockLookupResponse findStocksBetweenStarAdnEndDates(FindStocksBetweenStartAndEndDatesQuery query) {
         var stocks = stockRepository.findStocksBetweenStartAndEndDates(query.getCompanyCode(), query.getStartDate(), query.getEndDate());
         if (stocks.isEmpty()) {
-            return new StockLookupResponse("No Stocks were found!");
+            return new StockLookupResponse(NO_STOCKS_WERE_FOUND);
         }
-        return new StockLookupResponse("Successfully returned " + stocks.size() + " Stocks" ,stocks);
+        return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stocks" ,stocks);
     }
 
     @QueryHandler
@@ -66,8 +66,8 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
     public StockLookupResponse findStockByCompanyCode(FindStocksByCompanyCodeQuery query) {
         var stocks = stockRepository.findByCompanyCode(query.getCompanyCode());
         if (stocks.isEmpty()) {
-            return new StockLookupResponse("No Stocks were found!");
+            return new StockLookupResponse(NO_STOCKS_WERE_FOUND);
         }
-        return new StockLookupResponse("Successfully returned " + stocks.size() + " Stocks" , stocks);
+        return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stocks" , stocks);
     }
 }

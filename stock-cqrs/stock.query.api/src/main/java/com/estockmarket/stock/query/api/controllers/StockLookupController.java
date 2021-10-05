@@ -34,15 +34,13 @@ public class StockLookupController {
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-                return null;
+                return new ArrayList<>();
             }
 
             return response.getStocks();
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to complete get all Stocks request";
-            System.out.println(e.toString());
-
-            return null;
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
@@ -53,13 +51,12 @@ public class StockLookupController {
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(new StockLookupResponse(""), HttpStatus.NO_CONTENT);
             }
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             var safeErrorMessage = "Failed to complete get a Stock by ID request";
-            System.out.println(e.toString());
 
             return new ResponseEntity<>(new StockLookupResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -72,15 +69,13 @@ public class StockLookupController {
             var response = queryGateway.query(query, ResponseTypes.instanceOf(StockLookupResponse.class)).join();
 
             if (response == null || response.getStocks() == null) {
-                return null;
+                return new ArrayList<>();
             }
 
             return response.getStocks();
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to complete get a Stocks by Company Code request";
-            System.out.println(e.toString());
-
-            return null;
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
@@ -111,8 +106,7 @@ public class StockLookupController {
             return new ResponseStock(stocks,min,max,BigDecimal.valueOf(avgInDouble));
 
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to complete get a Stocks between start and end dates request";
-            System.out.println(e.toString());
+            e.printStackTrace();
 
             return new ResponseStock();
 
@@ -129,11 +123,9 @@ public class StockLookupController {
                 return null;
             }
 
-            var stocks = response.getStocks();
             return response.getStocks().get(0);
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to complete get the latest Stock request";
-            System.out.println(e.toString());
+            e.printStackTrace();
 
             return null;
         }

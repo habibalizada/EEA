@@ -1,11 +1,8 @@
 package com.estockmarket.stock.cmd.api.controllers;
 
 import com.estockmarket.stock.cmd.api.commands.DeleteStockCommand;
-import com.estockmarket.stock.core.dto.BaseResponse;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +26,7 @@ public class DeleteStockController {
                     .build();
             commandGateway.send(command);
         } catch (Exception e) {
-            var safeErrorMessage = "Error while processing request to delete stock with id - " + id;
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 }

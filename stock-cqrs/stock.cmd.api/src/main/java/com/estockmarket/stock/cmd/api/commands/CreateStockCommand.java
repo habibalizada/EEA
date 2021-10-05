@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 public class CreateStockCommand {
 
     @TargetAggregateIdentifier
-//    private int id;
     private String id;
     private String companyCode;
     @NotNull(message = "Stock price must not be null")
