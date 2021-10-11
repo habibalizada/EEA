@@ -5,6 +5,8 @@ import com.estockmarket.stock.query.api.queries.*;
 import com.estockmarket.stock.query.api.repositories.StockRepository;
 import com.estockmarket.stock.query.api.tdo.StockLookupResponse;
 import org.axonframework.queryhandling.QueryHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
     public static final String SUCCESSFULLY_RETURNED = "Successfully returned ";
     public static final String NO_STOCKS_WERE_FOUND = "No Stocks were found!";
     private final StockRepository stockRepository;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StockQueryHandlerImpl.class);
 
     @Autowired
     public StockQueryHandlerImpl(StockRepository stockRepository) {
@@ -30,6 +34,7 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
         }
         var stocks = new ArrayList<Stock>();
         stockIterator.forEach(stocks::add);
+        LOGGER.info("{} {}  Stock(s)!", SUCCESSFULLY_RETURNED, stocks.size());
         return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stock(s)!", stocks);
     }
 
@@ -58,6 +63,7 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
         if (stocks.isEmpty()) {
             return new StockLookupResponse(NO_STOCKS_WERE_FOUND);
         }
+        LOGGER.info("{} {}  Stock(s)!", SUCCESSFULLY_RETURNED, stocks.size());
         return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stocks" ,stocks);
     }
 
@@ -68,6 +74,7 @@ public class StockQueryHandlerImpl implements StockQueryHandler {
         if (stocks.isEmpty()) {
             return new StockLookupResponse(NO_STOCKS_WERE_FOUND);
         }
+        LOGGER.info("{} {}  Stock(s)!", SUCCESSFULLY_RETURNED, stocks.size());
         return new StockLookupResponse(SUCCESSFULLY_RETURNED + stocks.size() + " Stocks" , stocks);
     }
 }

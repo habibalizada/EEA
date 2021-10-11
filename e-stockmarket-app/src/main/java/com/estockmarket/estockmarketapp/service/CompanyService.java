@@ -10,6 +10,8 @@ import com.estockmarket.estockmarketapp.common.TransactionResponse;
 import com.estockmarket.estockmarketapp.dao.CompanyDao;
 import com.estockmarket.estockmarketapp.model.Company;
 import com.estockmarket.estockmarketapp.model.RequestCompany;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.Optional;
 
 @Service
 public class CompanyService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CompanyService.class);
 
     @Autowired
     private CompanyDao companyDao;
@@ -40,15 +44,19 @@ public class CompanyService {
         Optional<Company> optionalCompany = companyDao.findByCode(company.getCode());
         // To make sure company code is unique
         if (optionalCompany.isPresent()) {
+            LOGGER.info("Company with given code already exists");
             throw new CompanyCollectionException(CompanyCollectionException.companyAlreadyExists());
         } else if (stockRequest.getStockPrice() == null) {
+            LOGGER.info("Stock price can't be null");
             throw new CompanyCollectionException("Stock price can't be null");
 
         } else {
             company.setId(sequenceGeneratorService.generateSequence(Company.SEQUENCE_NAME));
             companyDao.save(company);
+            LOGGER.info("Company saved");
             // Rest call
             companyFeignClient.addStock(stockRequest, company.getCode());
+            LOGGER.info("Stock saved");
 
         }
     }
@@ -59,6 +67,7 @@ public class CompanyService {
         if (stock == null) {
             throw new CompanyCollectionException(CompanyCollectionException.stockNotFoundException(code));
         }
+        LOGGER.info("Company with code: {} retrieved", code);
         return  new TransactionResponse(company, stock);
     }
 
@@ -71,6 +80,7 @@ public class CompanyService {
                 latestStock = stockQueryFeignClient.getLatestStockByCompanyCode(company.getCode());
                 transactionResponseList.add(new TransactionResponse(company, latestStock));
             }
+            LOGGER.info("All Companies with their latest Stock retrieved");
             return transactionResponseList;
         } else {
             return new ArrayList<>();
@@ -86,6 +96,7 @@ public class CompanyService {
             for (Stock s: stocks) {
                 companyFeignClient.deleteStockById(s.getId());
             }
+            LOGGER.info("Company with code: {} and it's all Stocks deleted", code);
             companyDao.delete(company.get());
         }
     }
@@ -111,6 +122,7 @@ public class CompanyService {
             stock.setCompanyCode(company.getCode());
             companyFeignClient.updateStock(stock);
         }
+        LOGGER.info("Company with code: {} and it's all Stocks updated", company.getCode());
         return companyDao.save(company);
     }
 
